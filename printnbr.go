@@ -24,7 +24,6 @@ func PrintNbr(n int) {
 		count--
 	}
 
-	digLast := n % div
 	dig := 0
 
 	for div > 1 {
@@ -36,5 +35,5 @@ func PrintNbr(n int) {
 
 	}
 
-	z01.PrintRune(rune(digLast + 48))
+	z01.PrintRune(rune(n + 48))
 }
