@@ -9,6 +9,12 @@ func PrintNbr(n int) {
 		n = -n
 	}
 
+	if n == -9223372036854775808 {
+		z01.PrintRune('9')
+		n = 223372036854775808
+
+	}
+
 	count := 0
 	num := n
 	div := 1
