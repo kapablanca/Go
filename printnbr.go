@@ -30,6 +30,7 @@ func PrintNbr(n int) {
 	for div > 1 {
 
 		dig = n / div
+		n = n % div
 		div = div / 10
 		z01.PrintRune(rune(dig + 48))
 
