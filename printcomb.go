@@ -7,25 +7,28 @@ func PrintComb() {
 	for i < 58 {
 
 		j := 48
+		for j <= i {
+			j++
+		}
 		for j < 58 {
 
-			for j <= i {
-				j++
+			k := 48
+			for k <= j {
+				k++
 			}
 
-			k := 48
 			for k < 58 {
-
-				for k <= j {
-					k++
-				}
 
 				z01.PrintRune(rune(i))
 				z01.PrintRune(rune(j))
 				z01.PrintRune(rune(k))
 				z01.PrintRune(44 + 32)
 
+				k++
+
 			}
+
+			j++
 
 		}
 
