@@ -25,12 +25,13 @@ func PrintNbr(n int) {
 	}
 
 	digLast := n % div
+	dig := 0
 
 	for div > 1 {
 
-		dig := n / div
-		z01.PrintRune(rune(dig + 48))
+		dig = n / div
 		div = div / 10
+		z01.PrintRune(rune(dig + 48))
 
 	}
 
