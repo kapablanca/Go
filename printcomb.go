@@ -9,14 +9,14 @@ func PrintComb() {
 		j := 48
 		for j < 58 {
 
-			if j <= i {
+			for j <= i {
 				j++
 			}
 
 			k := 48
 			for k < 58 {
 
-				if k <= j {
+				for k <= j {
 					k++
 				}
 
