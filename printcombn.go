@@ -32,4 +32,3 @@ func generateCombinations(prefix string, start, n int) {
 func intToString(num int) string {
 	return string('0' + rune(num))
 }
-
