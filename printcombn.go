@@ -5,25 +5,25 @@ import (
 )
 
 func PrintCombN(n int) {
-	generateCombinations("", 0, n)
+	generateCombinations("", 0, n, true)
 	z01.PrintRune('\n') // Correctly print a newline at the end of function execution
 }
 
-func generateCombinations(prefix string, start, n int) {
+func generateCombinations(prefix string, start, n int, isLast bool) {
 	if len(prefix) == n {
 		for _, r := range prefix {
 			z01.PrintRune(rune(r))
+		}
+		if !isLast {
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
 		}
 		return
 	}
 
 	for i := start; i <= 9; i++ {
 		newPrefix := prefix + intToString(i) // Use the custom int to string conversion
-		generateCombinations(newPrefix, i+1, n)
-		if !(len(prefix) == n-1 && i == 9) {
-			z01.PrintRune(',')
-			z01.PrintRune(' ')
-		}
+		generateCombinations(newPrefix, i+1, n, i == 9 && len(newPrefix) == n-1)
 	}
 }
 
