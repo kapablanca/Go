@@ -8,5 +8,4 @@ func PrintStr(s string) {
 	for _, char := range aString {
 		z01.PrintRune(rune(char))
 	}
-	z01.PrintRune(' ')
 }
