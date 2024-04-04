@@ -1,11 +1,11 @@
 package piscine
 
 func StrLen(s string) int {
-	aString := []byte(s)
+	// aString := []byte(s)
 
 	count := 0
 
-	for range aString {
+	for range s {
 		count++
 	}
 
