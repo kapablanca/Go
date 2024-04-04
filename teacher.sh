@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-INTERVIEW=$(sed -n '179p' streets/Buckingham_Place| grep -oP '\d+')
+INTERVIEW=$(grep "SEE INTERVIEW" streets/Buckingham_Place | grep -oP '\d+')
 
 echo "$INTERVIEW"
 cat interviews/interview-$INTERVIEW
