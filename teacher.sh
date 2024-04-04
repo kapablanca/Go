@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
-INTERVIEW=$(grep "SEE INTERVIEW" mystery/streets/Buckingham_Place | grep -oP '\d+')
+INTERVIEW=$(sed -n '179p' streets/Buckingham_Place| grep -oP '\d+')
 
 echo "$INTERVIEW"
-cat the-final-cl-test/mystery/interviews/interview-$INTERVIEW
+cat interviews/interview-$INTERVIEW
 echo "$MAIN_SUSPECT"
