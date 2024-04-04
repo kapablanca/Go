@@ -1,30 +1,29 @@
 package piscine
 
-import "github.com/01-edu/z01"
+import (
+	"github.com/01-edu/z01"
+)
 
-func printDigits(digits []int) {
-	for digit := range digits {
-		z01.PrintRune(intToChar(digits[digit]))
+// PrintCombN prints all possible combinations of n different digits in ascending order
+func PrintCombN(n int) {
+	for i := 0; i <= 9; i++ {
+		generateCombinations(n, i, 1, i)
 	}
-	if !(digits[0] == (10 - (len(digits)))) {
-		z01.PrintRune(',')
-		z01.PrintRune(' ')
-	}
+	z01.PrintRune('\n') // Print a newline character at the end
 }
 
-func generateCombinations(digits []int, start, index int) {
-	if index == len(digits) {
-		printDigits(digits)
+// Recursive function to generate combinations
+func generateCombinations(n, start, index, digit int) {
+	if index == n {
+		z01.PrintRune(rune('0' + digit))
 		return
 	}
-	for i := start; i <= 9; i++ {
-		digits[index] = i
-		generateCombinations(digits, i+1, index+1)
-	}
-}
 
-func PrintCombN(n int) {
-	digits := make([]int, n)
-	generateCombinations(digits, 0, 0)
-	z01.PrintRune('\n')
+	for i := start + 1; i <= 9; i++ {
+		generateCombinations(n, i, index+1, digit*10+i)
+		if index == 1 {
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
+		}
+	}
 }
