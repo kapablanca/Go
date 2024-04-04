@@ -1,28 +1,36 @@
 package piscine
 
-import "fmt"
+import (
+	"github.com/01-edu/z01"
+)
 
 // PrintCombN prints all possible combinations of n different digits in ascending order
 func PrintCombN(n int) {
-	if n < 1 {
-		return
-	}
-	printCombinationRecursively(n, "", 0)
-	fmt.Println() // Print a newline character at the end
+	combinations := make([]int, n)           // Initialize a slice to store combinations
+	generateCombinations(combinations, 0, 0) // Generate combinations recursively, starting with index 0 and digit 0
 }
 
 // Recursive function to generate combinations
-func printCombinationRecursively(n int, prefix string, start int) {
-	if n == 0 {
-		fmt.Print(prefix)
-		if len(prefix) < 10-n {
-			fmt.Print(", ")
-		}
+func generateCombinations(combinations []int, index int, start int) {
+	if index == len(combinations) { // Base case: if index reaches the length of combinations slice, print the combination
+		printCombination(combinations)
 		return
 	}
 
-	for i := start; i <= 9; i++ {
-		newPrefix := prefix + fmt.Sprintf("%d", i)
-		printCombinationRecursively(n-1, newPrefix, i+1)
+	for i := start; i <= 9; i++ { // Iterate through possible digits
+		combinations[index] = i                          // Store the current digit in the combinations slice
+		generateCombinations(combinations, index+1, i+1) // Recursively generate combinations for the next index, starting with the next digit
 	}
+}
+
+// Function to print a combination
+func printCombination(combinations []int) {
+	for i, digit := range combinations {
+		if i > 0 { // Print comma and space if it's not the first digit
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
+		}
+		z01.PrintRune(rune('0' + digit)) // Print the current digit
+	}
+	z01.PrintRune('\n') // Print a newline character at the end of each line
 }
