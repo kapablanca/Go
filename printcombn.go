@@ -4,33 +4,32 @@ import (
 	"github.com/01-edu/z01"
 )
 
-// PrintCombN prints all possible combinations of n different digits in ascending order
 func PrintCombN(n int) {
-	combinations := make([]int, n)           // Initialize a slice to store combinations
-	generateCombinations(combinations, 0, 0) // Generate combinations recursively, starting with index 0 and digit 0
+	generateCombinations("", 0, n)
+	z01.PrintRune('\n') // Correctly print a newline at the end of function execution
 }
 
-// Recursive function to generate combinations
-func generateCombinations(combinations []int, index int, start int) {
-	if index == len(combinations) { // Base case: if index reaches the length of combinations slice, print the combination
-		printCombination(combinations)
-		return
-	}
-
-	for i := start; i <= 9; i++ { // Iterate through possible digits
-		combinations[index] = i                          // Store the current digit in the combinations slice
-		generateCombinations(combinations, index+1, i+1) // Recursively generate combinations for the next index, starting with the next digit
-	}
-}
-
-// Function to print a combination
-func printCombination(combinations []int) {
-	for i, digit := range combinations {
-		if i > 0 { // Print comma and space if it's not the first digit
+func generateCombinations(prefix string, start, n int) {
+	if len(prefix) == n {
+		for _, r := range prefix {
+			z01.PrintRune(rune(r))
+		}
+		if prefix != "123456789"[0:9-n] { // Checks against the highest value for each n
 			z01.PrintRune(',')
 			z01.PrintRune(' ')
 		}
-		z01.PrintRune(rune('0' + digit)) // Print the current digit
+		return
 	}
-	z01.PrintRune('\n') // Print a newline character at the end of each line
+
+	for i := start; i <= 9; i++ {
+		newPrefix := prefix + intToString(i) // Use the custom int to string conversion
+		generateCombinations(newPrefix, i+1, n)
+	}
 }
+
+// intToString converts an integer to its string representation.
+// This version directly constructs the string expected for single digits, leveraging rune conversion.
+func intToString(num int) string {
+	return string('0' + rune(num))
+}
+
