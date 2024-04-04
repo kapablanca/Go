@@ -14,16 +14,16 @@ func generateCombinations(prefix string, start, n int) {
 		for _, r := range prefix {
 			z01.PrintRune(rune(r))
 		}
-		if prefix != "123456789"[0:9-n] { // Checks against the highest value for each n
-			z01.PrintRune(',')
-			z01.PrintRune(' ')
-		}
 		return
 	}
 
 	for i := start; i <= 9; i++ {
 		newPrefix := prefix + intToString(i) // Use the custom int to string conversion
 		generateCombinations(newPrefix, i+1, n)
+		if !(len(prefix) == n-1 && i == 9) {
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
+		}
 	}
 }
 
