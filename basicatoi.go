@@ -1,7 +1,6 @@
 package piscine
 
 func BasicAtoi(s string) int {
-
 	var number int = 0
 
 	for _, num := range s {
@@ -11,5 +10,4 @@ func BasicAtoi(s string) int {
 	}
 
 	return number
-
 }
