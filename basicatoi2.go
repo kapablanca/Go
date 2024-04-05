@@ -6,7 +6,7 @@ func BasicAtoi2(s string) int {
 	for _, num := range s {
 
 		var digit rune = num - 48
-		if int(digit) <= 0 && int(digit) >= 9 {
+		if int(digit) <= 0 || int(digit) >= 9 {
 			return 0
 		}
 		number = number*10 + int(digit)
