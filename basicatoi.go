@@ -6,7 +6,7 @@ func BasicAtoi(s string) int {
 
 	for _, num := range s {
 
-		var digit rune =  num - 48
+		var digit rune = num - 48
 		number = number*10 + int(digit)
 	}
 
