@@ -11,7 +11,7 @@ func IterativeFactorial(nb int) int {
 		return result
 	}
 
-	for i := 1; i < nb+1; i++ {
+	for i := 1; i <= nb; i++ {
 		if result*i > maxInteger {
 			return 0
 		} else {
