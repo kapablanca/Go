@@ -1,16 +1,14 @@
 package piscine
 
 func IsPrime(nb int) bool {
-	result := true
 	if nb <= 1 {
-		result = false
-		return result
+		return false
 	}
-	for i := 2; i < nb; i++ {
+	root := Sqrt(nb)
+	for i := 2; i <= root; i++ {
 		if nb%i == 0 {
-			result = false
-			return result
+			return false
 		}
 	}
-	return result
+	return true
 }
