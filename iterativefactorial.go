@@ -5,7 +5,7 @@ func IterativeFactorial(nb int) int {
 		return 0
 	}
 	var result int = 1
-	var maxInteger int = 12147483647
+	var maxInteger int = 92147483647
 
 	for i := 1; i <= nb; i++ {
 		if result*i > maxInteger {
