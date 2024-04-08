@@ -5,13 +5,13 @@ func IterativeFactorial(nb int) int {
 		return 0
 	}
 	var result int = 1
-	var maxInteger int = 2147483647 * 2147483647
+	var maxInteger int = 9223372036854775807
 
 	for i := 1; i <= nb; i++ {
-		if result > maxInteger {
-			return 0
-		} else {
+		if result < maxInteger {
 			result = result * i
+		} else {
+			return 0
 		}
 	}
 	return result
