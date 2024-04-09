@@ -6,6 +6,7 @@ func IsLower(s string) bool {
 	}
 	if IsUpper(s) {
 		return false
+	} else {
+		return true
 	}
-	return true
 }
