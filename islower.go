@@ -4,5 +4,10 @@ func IsLower(s string) bool {
 	if len(s) != AlphaCount(s) {
 		return false
 	}
-	return !IsUpper(s)
+	for _, letter := range s {
+		if letter < 'a' || letter > 'z' {
+			return false
+		}
+	}
+	return true
 }
