@@ -6,7 +6,9 @@ func Join(strs []string, sep string) string {
 	for _, word := range strs {
 		answer += word + sep
 	}
-	answer = answer[:len(answer)-1]
 
+	if string(LastRune(answer)) == sep {
+		answer = answer[:len(answer)-1]
+	}
 	return answer
 }
