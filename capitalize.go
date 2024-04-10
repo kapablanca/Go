@@ -18,7 +18,7 @@ func Capitalize(s string) string {
 			} else {
 				last_letter = string(LastRune(answer))
 				if IsNumeric(last_letter) || IsUpper(last_letter) || IsLower(last_letter) {
-					answer += letter
+					answer += ToLower(letter)
 				} else {
 					answer += ToUpper(letter)
 				}
