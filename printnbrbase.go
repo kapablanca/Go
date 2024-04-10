@@ -40,7 +40,16 @@ func PrintNbrBase(nbr int, base string) {
 
 	// adding the minus sign in front of the number
 	if negative {
-		return
+		z01.PrintRune('-')
+	}
+
+	// printint the digits to the new base
+	for i := len(digits_save) - 1; i >= 0; i-- {
+		for j, character := range base {
+			if digits_save[i] == j {
+				z01.PrintRune(character)
+			}
+		}
 	}
 
 }
