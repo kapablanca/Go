@@ -8,18 +8,19 @@ import (
 
 func main() {
 	arguments := os.Args[1:]
-	table := arguments
 
-	for i := 0; i < len(arguments)-1; i++ {
-		for j := 1 + i; j < len(arguments); j++ {
-			if table[i][0] > table[j][0] {
-				table[i], table[j] = table[j], table[i]
+	for i := 0; i < len(arguments); i++ {
+		for j := 0; j < len(arguments)-1; j++ {
+			if arguments[j] > arguments[j+1] {
+				arguments[j], arguments[j+1] = arguments[j+1], arguments[j]
 			}
 		}
 	}
 
-	for _, character := range table {
-		z01.PrintRune(rune(character[0]))
+	for _, word := range arguments {
+		for _, character := range word {
+			z01.PrintRune(character)
+		}
 		z01.PrintRune('\n')
 	}
 }
