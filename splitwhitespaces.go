@@ -4,13 +4,18 @@ func SplitWhiteSpaces(s string) []string {
 	var splitted []string
 	var word string
 
-	for i, char := range s {
-		if char == rune(32) || char == rune(10) || char == rune(9) {
-			splitted = append(splitted, word)
-			word = ""
+	for i := 0; i < len(s); i++ {
+		if s[i] == byte(rune(32)) || s[i] == byte(rune(32)) || s[i] == byte(rune(32)) {
+			if i != 0 && (s[i-1] != byte(rune(32)) || s[i-1] != byte(rune(32)) || s[i-1] != byte(rune(32))) {
+
+				splitted = append(splitted, word)
+				word = ""
+			} else {
+				word = ""
+			}
 		} else {
 
-			word += string(char)
+			word += string(s[i])
 
 			if i == len(s)-1 {
 				splitted = append(splitted, word)
