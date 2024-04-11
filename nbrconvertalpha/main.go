@@ -10,7 +10,7 @@ func main() {
 	arguments := os.Args[1:]
 
 	capital := false
-	if arguments[0] == "--upper" {
+	if len(arguments) > 0 && arguments[0] == "--upper" {
 		capital = true
 		arguments = arguments[1:] // Adjust arguments to skip the --upper flag
 	}
