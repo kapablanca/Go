@@ -14,7 +14,6 @@ func PrintNbrBase(nbr int, base string) {
 		if !IsUnique(base, string(character)) || character == '+' || character == '-' {
 			PrintNV()
 			return
-
 		}
 	}
 
@@ -51,7 +50,6 @@ func PrintNbrBase(nbr int, base string) {
 			}
 		}
 	}
-
 }
 
 func IsUnique(word string, character string) bool {
@@ -63,7 +61,6 @@ func IsUnique(word string, character string) bool {
 			if i != j && char1 == char2 {
 				return false
 			}
-
 		}
 	}
 	return true
