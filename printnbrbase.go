@@ -53,11 +53,8 @@ func PrintNbrBase(nbr int, base string) {
 }
 
 func IsUnique(word string, character string) bool {
-
 	for i, char1 := range word {
-
 		for j, char2 := range word {
-
 			if i != j && char1 == char2 {
 				return false
 			}
@@ -67,7 +64,6 @@ func IsUnique(word string, character string) bool {
 }
 
 func PrintNV() {
-
 	z01.PrintRune('N')
 	z01.PrintRune('V')
 }
