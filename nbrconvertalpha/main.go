@@ -23,7 +23,6 @@ func main() {
 	for _, nbr := range arguments {
 		if !piscine.IsNumeric(nbr) {
 			z01.PrintRune(' ')
-
 		} else {
 			digit := piscine.Atoi(nbr)
 
