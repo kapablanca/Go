@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"piscine"
 
 	"github.com/01-edu/z01"
 )
@@ -10,20 +9,17 @@ import (
 func main() {
 	arguments := os.Args[1:]
 
-	// checking first argument to implement capital letters if needeed
 	capital := false
-
 	if arguments[0] == "--upper" {
 		capital = true
-		arguments = arguments[1:]
+		arguments = arguments[1:] // Adjust arguments to skip the --upper flag
 	}
-	// checking each argument that is valid and printing
-	for _, nbr := range arguments {
-		if !piscine.IsNumeric(nbr) {
+
+	for _, arg := range arguments {
+		if !IsNumeric(arg) {
 			z01.PrintRune(' ')
 		} else {
-			digit := piscine.Atoi(nbr)
-
+			digit := Atoi(arg)
 			if digit < 1 || digit > 26 {
 				z01.PrintRune(' ')
 			} else {
@@ -35,4 +31,24 @@ func main() {
 			}
 		}
 	}
+	z01.PrintRune('\n')
+}
+
+// IsNumeric checks if a string is a valid positive integer.
+func IsNumeric(s string) bool {
+	for _, c := range s {
+		if c < '0' || c > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+// Atoi converts a string to an integer.
+func Atoi(s string) int {
+	n := 0
+	for _, c := range s {
+		n = n*10 + int(c-'0')
+	}
+	return n
 }
