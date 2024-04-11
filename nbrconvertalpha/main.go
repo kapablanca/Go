@@ -9,29 +9,44 @@ import (
 func main() {
 	arguments := os.Args[1:]
 
+	// Early exit if no arguments are provided.
+	if len(arguments) == 0 {
+		return
+	}
+
 	capital := false
 	if len(arguments) > 0 && arguments[0] == "--upper" {
 		capital = true
 		arguments = arguments[1:] // Adjust arguments to skip the --upper flag
 	}
 
+	// Variable to track if any output has been printed.
+	outputPrinted := false
+
 	for _, arg := range arguments {
 		if !IsNumeric(arg) {
 			z01.PrintRune(' ')
+			outputPrinted = true
 		} else {
 			digit := Atoi(arg)
 			if digit < 1 || digit > 26 {
 				z01.PrintRune(' ')
+				outputPrinted = true
 			} else {
 				if capital {
 					z01.PrintRune(rune(digit - 1 + 'A'))
 				} else {
 					z01.PrintRune(rune(digit - 1 + 'a'))
 				}
+				outputPrinted = true
 			}
 		}
 	}
-	z01.PrintRune('\n')
+
+	// Print a newline character only if some output has been printed.
+	if outputPrinted {
+		z01.PrintRune('\n')
+	}
 }
 
 // IsNumeric checks if a string is a valid positive integer.
