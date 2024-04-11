@@ -21,7 +21,6 @@ func PrintNbrBase(nbr int, base string) {
 	negative := false
 
 	if nbr < 0 {
-		nbr = nbr * (-1)
 		negative = true
 	}
 
@@ -33,6 +32,9 @@ func PrintNbrBase(nbr int, base string) {
 	// Tranforming the digits
 	for quotient != 0 {
 		reminder = quotient % base_len
+		if reminder < 0 {
+			reminder = -reminder
+		}
 		digits_save = append(digits_save, reminder)
 		quotient /= base_len
 	}
