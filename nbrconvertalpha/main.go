@@ -31,7 +31,6 @@ func main() {
 			}
 		}
 	}
-	z01.PrintRune('\n')
 }
 
 // IsNumeric checks if a string is a valid positive integer.
