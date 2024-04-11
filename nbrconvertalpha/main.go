@@ -14,10 +14,8 @@ func main() {
 	capital := false
 
 	if arguments[0] == "--upper" {
-
 		capital = true
 		arguments = arguments[1:]
-
 	}
 	// checking each argument that is valid and printing
 	for _, nbr := range arguments {
@@ -35,8 +33,6 @@ func main() {
 					z01.PrintRune(rune(digit - 1 + 'a'))
 				}
 			}
-
 		}
-
 	}
 }
