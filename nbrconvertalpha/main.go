@@ -15,6 +15,7 @@ func main() {
 		arguments = arguments[1:] // Adjust arguments to skip the --upper flag
 	}
 
+	// Removed the newline printing at the end.
 	for _, arg := range arguments {
 		if !IsNumeric(arg) {
 			z01.PrintRune(' ')
@@ -31,6 +32,7 @@ func main() {
 			}
 		}
 	}
+	// Explicitly, do not print a newline character at the end.
 }
 
 // IsNumeric checks if a string is a valid positive integer.
