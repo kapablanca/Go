@@ -17,12 +17,10 @@ func main() {
 
 	// If arguments less than 1, print new line
 	if len(arguments) < 1 {
-
 		z01.PrintRune('\n')
 	} else {
 		// Checking for vowels
 		for _, argument := range arguments {
-
 			if isVowel(argument) {
 				hasVowel = true
 			}
@@ -46,27 +44,22 @@ func main() {
 
 					// Getting the indexes of the args that each vowel is
 					for range vowelSlice {
-
 						indexArgumentSlice = append(indexArgumentSlice, i)
 					}
 
 				}
-
 			}
 			// Reversing the order of vowels in slice
 			for i, j := 0, len(vowelSlice)-1; i < j; i, j = i+1, j-1 {
-
 				vowelSlice[i], vowelSlice[j] = vowelSlice[j], vowelSlice[i]
 			}
 
 		}
 	}
-
 }
 
 // Returns a slice with the vowels of the string
 func checkVowels(phrase string) ([]rune, []int) {
-
 	vowels := [10]rune{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
 	var list_vowels []rune
 	var indexes_vowels []int
@@ -74,7 +67,6 @@ func checkVowels(phrase string) ([]rune, []int) {
 	// Appending the vowels found and the indexes were they are to slices
 	for i, char := range phrase {
 		for _, letter := range vowels {
-
 			if char == letter {
 				list_vowels = append(list_vowels, letter)
 				indexes_vowels = append(indexes_vowels, i)
@@ -86,12 +78,10 @@ func checkVowels(phrase string) ([]rune, []int) {
 
 // Checks if there is a vowel
 func isVowel(word string) bool {
-
 	vowels := [10]rune{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
 
 	for _, char := range word {
 		for _, letter := range vowels {
-
 			if char == letter {
 				return true
 			}
@@ -101,7 +91,6 @@ func isVowel(word string) bool {
 }
 
 func printArgs(s string) {
-
 	for _, char := range s {
 		z01.PrintRune(char)
 	}
