@@ -16,7 +16,7 @@ func main() {
 
 		file, _ := os.Open(string(arguments[0]))
 
-		arr := make([]byte, 13)
+		arr := make([]byte, 15)
 		file.Read(arr)
 		fmt.Println(string(arr))
 
