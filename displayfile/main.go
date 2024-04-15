@@ -14,9 +14,9 @@ func main() {
 		fmt.Println("Too many arguments")
 	} else {
 
-		file, _ := os.Open(arguments[0])
+		file, _ := os.Open(string(arguments[0]))
 
-		var arr []byte
+		arr := make([]byte, 13)
 		file.Read(arr)
 		fmt.Println(string(arr))
 
