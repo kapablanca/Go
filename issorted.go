@@ -29,7 +29,7 @@ func IsSorted(f func(a, b int) int, a []int) bool {
 			negative_one = 1
 		}
 	}
-	if one == 1 && negative_one == -1 {
+	if one == 1 && negative_one == 1 {
 		return false
 	}
 	return true
