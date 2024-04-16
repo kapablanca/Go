@@ -5,7 +5,5 @@ import (
 )
 
 func main() {
-
 	arguments := os.Args[1:]
-
 }
