@@ -20,10 +20,10 @@ func IsSorted(f func(a, b int) int, a []int) bool {
 	}
 
 	for _, digit := range sorting_list {
-		if digit == 1 {
+		if digit > 0 {
 			one = 1
 		}
-		if digit == -1 {
+		if digit < 0 {
 			negative_one = 1
 		}
 	}
