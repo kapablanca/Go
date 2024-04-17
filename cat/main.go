@@ -18,6 +18,7 @@ func PrintString(s string) {
 func ErrorPrint(err error) {
 	message := "ERROR: " + err.Error()
 	PrintString(message)
+	z01.PrintRune('\n')
 }
 
 func main() {
@@ -42,6 +43,7 @@ func main() {
 			content, err := os.ReadFile(arg)
 			if err != nil {
 				ErrorPrint(err)
+				os.Exit(1)
 			}
 			content_string := string(content)
 			PrintString(content_string)
