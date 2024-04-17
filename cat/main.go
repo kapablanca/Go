@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"os"
 
 	"github.com/01-edu/z01"
@@ -26,27 +25,24 @@ func main() {
 
 	if len(arguments) < 1 {
 		buffer := make([]byte, 1)
+
 		for {
 			_, err := os.Stdin.Read(buffer)
 			if err != nil {
-				if err == io.EOF {
-					continue
-				}
-				ErrorPrint(err)
-				return
+				break
 			}
 			PrintString(string(buffer))
 		}
-
-	} else {
-		for _, arg := range arguments {
-			content, err := os.ReadFile(arg)
-			if err != nil {
-				ErrorPrint(err)
-				os.Exit(1)
-			}
-			content_string := string(content)
-			PrintString(content_string)
-		}
+		return
 	}
+	for _, arg := range arguments {
+		content, err := os.ReadFile(arg)
+		if err != nil {
+			ErrorPrint(err)
+			os.Exit(1)
+		}
+		content_string := string(content)
+		PrintString(content_string)
+	}
+
 }
