@@ -1,11 +1,10 @@
 package main
 
 import (
+	"io"
 	"os"
 
 	"github.com/01-edu/z01"
-
-	"io"
 )
 
 // Function to print any string in stdout
@@ -41,7 +40,6 @@ func main() {
 	} else {
 		for _, arg := range arguments {
 			content, err := os.ReadFile(arg)
-
 			if err != nil {
 				ErrorPrint(err)
 			}
@@ -49,5 +47,4 @@ func main() {
 			PrintString(content_string)
 		}
 	}
-
 }
