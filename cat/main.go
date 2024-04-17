@@ -44,5 +44,4 @@ func main() {
 		content_string := string(content)
 		PrintString(content_string)
 	}
-
 }
