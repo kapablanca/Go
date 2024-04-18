@@ -3,22 +3,24 @@ package piscine
 func SplitOneSpace(str string) []string {
 	var words []string
 	currentWord := ""
-	inWord := false
 
+	// Process each character in the string
 	for i := 0; i < len(str); i++ {
-		if str[i] != ' ' {
-			currentWord += string(str[i])
-			inWord = true
-		} else if inWord {
-			// Only add the currentWord to words if we were previously in a word.
-			words = append(words, currentWord)
-			currentWord = ""
-			inWord = false
+		if str[i] == ' ' {
+			// Check if currentWord has accumulated any characters before adding it to words
+			if currentWord != "" {
+				words = append(words, currentWord)
+				currentWord = "" // Reset currentWord after adding it to words
+			}
+			// Continue to next iteration to skip additional space processing
+			continue
 		}
+		// Add non-space characters to currentWord
+		currentWord += string(str[i])
 	}
 
-	// Add the last word if it exists
-	if inWord {
+	// Add the last accumulated word to words if not empty
+	if currentWord != "" {
 		words = append(words, currentWord)
 	}
 
