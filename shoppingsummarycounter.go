@@ -4,10 +4,6 @@ func SplitOneSpace(str string) []string {
 	var words []string
 	currentWord := ""
 
-	if str == " " {
-		words = append(words, "")
-	}
-
 	// Process each character in the string
 	for i := 0; i < len(str); i++ {
 		if str[i] == ' ' {
