@@ -24,9 +24,8 @@ func SplitOneSpace(str string) []string {
 	}
 
 	// Add the last accumulated word to words if not empty
-	if currentWord != "" {
-		words = append(words, currentWord)
-	}
+
+	words = append(words, currentWord)
 
 	return words
 }
