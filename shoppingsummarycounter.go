@@ -4,14 +4,18 @@ func SplitOneSpace(str string) []string {
 	var words []string
 	currentWord := ""
 
+	if str == " " {
+		words = append(words, "")
+	}
+
 	// Process each character in the string
 	for i := 0; i < len(str); i++ {
 		if str[i] == ' ' {
 			// Check if currentWord has accumulated any characters before adding it to words
-			if currentWord != "" {
-				words = append(words, currentWord)
-				currentWord = "" // Reset currentWord after adding it to words
-			}
+			// if currentWord != "" {
+			words = append(words, currentWord)
+			currentWord = "" // Reset currentWord after adding it to words
+			// }
 			// Continue to next iteration to skip additional space processing
 			continue
 		}
