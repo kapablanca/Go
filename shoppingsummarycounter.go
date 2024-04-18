@@ -1,7 +1,7 @@
 package piscine
 
 func ShoppingSummaryCounter(str string) map[string]int {
-	items_slice := SplitWhiteSpaces(str)
+	items_slice := Split(str, " ")
 
 	shopping_list := make(map[string]int)
 
