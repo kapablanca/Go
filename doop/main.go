@@ -178,5 +178,5 @@ func main() {
 	}
 
 	result := applyOperator(list_operations[operation_index], n1, n2)
-	os.Stdout.WriteString(itoa(result))
+	os.Stdout.WriteString(itoa(result) + "\n")
 }
