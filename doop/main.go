@@ -17,7 +17,6 @@ func isNumber(s string) bool {
 
 // Checking validity of operator
 func checkOperator(operator string) bool {
-
 	// valid_operators := [...]string{"+", "-", "/", "*", "%"}
 
 	valid_operators := [...]rune{'+', '-', '/', '*', '%'}
@@ -36,7 +35,6 @@ func checkOperator(operator string) bool {
 
 // Sanitizing arguments
 func checkArgs(args []string) bool {
-
 	if len(args) != 3 {
 		return false
 	}
@@ -106,11 +104,9 @@ func atoi(s string) int {
 
 // Function to apply the selected operator
 func applyOperator(f func(int, int) int, n1, n2 int) int {
-
 	result := f(n1, n2)
 
 	return result
-
 }
 
 // Convert number to string
@@ -148,7 +144,6 @@ func itoa(num int) string {
 
 // Main Program
 func main() {
-
 	if len(os.Args) < 2 {
 		return
 	}
