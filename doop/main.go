@@ -4,6 +4,12 @@ import (
 	"os"
 )
 
+// Maximum value of integers
+const (
+	MaxInt = 9223372036854775807
+	MinInt = -9223372036854775808
+)
+
 // Checking is string is numerical value
 func isNumber(s string) bool {
 	for _, char := range s {
@@ -49,16 +55,25 @@ func checkArgs(args []string) bool {
 
 // Mathematical operations functions
 func add(n1, n2 int) int {
+	if n1 > MaxInt-n2 || n1 < MinInt-n2 {
+		os.Exit(0)
+	}
 	n := n1 + n2
 	return n
 }
 
 func subtract(n1, n2 int) int {
+	if n1 > MaxInt+n2 || n1 < MinInt+n2 {
+		os.Exit(0)
+	}
 	n := n1 - n2
 	return n
 }
 
 func multiply(n1, n2 int) int {
+	if n1 > MaxInt/n2 || n1 < MinInt/n2 {
+		os.Exit(0)
+	}
 	n := n1 * n2
 	return n
 }
