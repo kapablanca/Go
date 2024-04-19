@@ -4,6 +4,9 @@ func LoafOfBread(str string) string {
 	if str == "" {
 		return "\n"
 	}
+	if countNonSpaceChars(str) == 0 {
+		return "\n"
+	}
 	if countNonSpaceChars(str) < 5 {
 		return "Invalid Output\n"
 	}
