@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
@@ -148,7 +147,6 @@ func main() {
 		return
 	}
 	arguments := os.Args[1:]
-	fmt.Println("Processed Arguments:", arguments)
 
 	if !checkArgs(arguments) {
 		return
