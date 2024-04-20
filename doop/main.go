@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -12,7 +13,19 @@ const (
 
 // Checking is string is numerical value
 func isNumber(s string) bool {
-	for _, char := range s {
+	if s == "" {
+		return false
+	}
+
+	start := 0
+	if s[0] == '-' || s[0] == '+' {
+		if len(s) == 1 {
+			return false
+		}
+		start = 1
+	}
+
+	for _, char := range s[start:] {
 		if char < '0' || char > '9' {
 			return false
 		}
@@ -22,16 +35,16 @@ func isNumber(s string) bool {
 
 // Checking validity of operator
 func checkOperator(operator string) bool {
-	// valid_operators := [...]string{"+", "-", "/", "*", "%"}
-
-	valid_operators := [...]rune{'+', '-', '/', '*', '%'}
+	valid_operators := [...]string{"+", "-", "/", "*", "%"}
 
 	if len(operator) != 1 {
 		return false
 	}
 
+	fmt.Println(operator)
+
 	for _, symbol := range valid_operators {
-		if operator == string(symbol) {
+		if operator == symbol {
 			return true
 		}
 	}
@@ -40,9 +53,6 @@ func checkOperator(operator string) bool {
 
 // Sanitizing arguments
 func checkArgs(args []string) bool {
-	if len(args) != 3 {
-		return false
-	}
 	if !isNumber(args[0]) || !isNumber(args[2]) {
 		return false
 	}
@@ -55,10 +65,11 @@ func checkArgs(args []string) bool {
 
 // Mathematical operations functions
 func add(n1, n2 int) int {
-	if n1 > MaxInt-n2 || n1 < MinInt-n2 {
-		os.Exit(0)
-	}
+	// if n1 > MaxInt-n2 || n1 < MinInt-n2 {
+	// 	os.Exit(0)
+	// }
 	n := n1 + n2
+	fmt.Printf("Adding: %d + %d = %d\n", n1, n2, n)
 	return n
 }
 
@@ -119,7 +130,7 @@ func atoi(s string) int {
 // Function to apply the selected operator
 func applyOperator(f func(int, int) int, n1, n2 int) int {
 	result := f(n1, n2)
-
+	fmt.Printf("Applied operation, result: %d\n", result)
 	return result
 }
 
@@ -158,7 +169,7 @@ func itoa(num int) string {
 
 // Main Program
 func main() {
-	if len(os.Args) < 2 {
+	if len(os.Args) != 4 {
 		return
 	}
 	arguments := os.Args[1:]
@@ -167,19 +178,28 @@ func main() {
 		return
 	}
 
-	valid_operators := [...]rune{'+', '-', '/', '*', '%'}
+	valid_operators := [...]string{"+", "-", "/", "*", "%"}
 
 	list_operations := []func(int, int) int{add, subtract, divide, multiply, modulo}
 
 	n1 := atoi(arguments[0])
 	n2 := atoi(arguments[2])
+	fmt.Printf("Parsed integers: n1=%d, n2=%d\n", n1, n2)
 
-	operation_index := 0
+	operation_index := -1
 
 	for index, oper := range valid_operators {
-		if arguments[1] == string(oper) {
+		if arguments[1] == oper {
+			fmt.Println("I fount a valid operator")
 			operation_index = index
+			break
 		}
+	}
+
+	fmt.Print(operation_index)
+
+	if operation_index == -1 {
+		fmt.Println(("Invalid Operation Index"))
 	}
 
 	if operation_index == 4 && n2 == 0 {
@@ -191,7 +211,9 @@ func main() {
 		os.Stdout.WriteString("No division by 0")
 		return
 	}
+	fmt.Printf("Selected operator %s at index %d\n", arguments[1], operation_index)
 
 	result := applyOperator(list_operations[operation_index], n1, n2)
+	fmt.Println(result)
 	os.Stdout.WriteString(itoa(result) + "\n")
 }
