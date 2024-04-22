@@ -12,6 +12,9 @@ package piscine
 
 func ListReverse(l *List) {
 	index := ListSize(l) - 1
+	if index < 1 {
+		return
+	}
 
 	curentNode := l.Tail
 	previousNode := (*NodeL)(nil)
