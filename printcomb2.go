@@ -2,32 +2,41 @@ package piscine
 
 import "github.com/01-edu/z01"
 
+/*Function that prints in ascending order and on a single line
+all possible combinations of two different two-digit numbers.
+These combinations are separated by a comma and a space. */
 func PrintComb2() {
-	for i := 0; i <= 99; i++ {
-		for j := i + 1; j <= 99; j++ {
 
-			dig1 := i/10 + 48
-			dig2 := i%10 + 48
+	// Declaring each number's digits
+	var digit1, digit2, digit3, digit4 int
 
-			dig3 := j/10 + 48
-			dig4 := j%10 + 48
+	for firstNumber := 0; firstNumber < 100; firstNumber++ {
 
-			z01.PrintRune(rune(dig1))
-			z01.PrintRune(rune(dig2))
+		for secondNumber := 0; secondNumber < 100; secondNumber++ {
 
-			z01.PrintRune(' ')
+			digit1 = firstNumber / 10
+			digit2 = firstNumber % 10
 
-			z01.PrintRune(rune(dig3))
-			z01.PrintRune(rune(dig4))
+			digit3 = secondNumber / 10
+			digit4 = secondNumber % 10
 
-			if i == 98 && j == 99 {
-				z01.PrintRune('\n')
-			} else {
+			// Print when firstNumber < secondNumber, putting space between them and seperator after
+			if firstNumber < secondNumber {
 
-				z01.PrintRune(',')
+				z01.PrintRune(rune(digit1) + '0')
+				z01.PrintRune(rune(digit2) + '0')
 				z01.PrintRune(' ')
+				z01.PrintRune(rune(digit3) + '0')
+				z01.PrintRune(rune(digit4) + '0')
 
+				// Skip the seperator in the last combination
+				if firstNumber < 98 {
+
+					z01.PrintRune(',')
+					z01.PrintRune(' ')
+				}
 			}
 		}
 	}
+	z01.PrintRune('\n')
 }
