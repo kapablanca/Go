@@ -6,12 +6,10 @@ import "github.com/01-edu/z01"
 all possible combinations of two different two-digit numbers.
 These combinations are separated by a comma and a space. */
 func PrintComb2() {
-
 	// Declaring each number's digits
 	var digit1, digit2, digit3, digit4 int
 
 	for firstNumber := 0; firstNumber < 100; firstNumber++ {
-
 		for secondNumber := 0; secondNumber < 100; secondNumber++ {
 
 			digit1 = firstNumber / 10
