@@ -25,7 +25,7 @@ func PrintComb() {
 			z01.PrintRune(rune(secondDigit) + '0')
 			z01.PrintRune(rune(thirdDigit) + '0')
 
-			// Printing the seperators until last number
+			// Printing the seperators until last valid combination
 			if number < 789 {
 				z01.PrintRune(',')
 				z01.PrintRune(' ')
