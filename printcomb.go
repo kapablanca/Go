@@ -5,7 +5,7 @@ import "github.com/01-edu/z01"
 /* Function that prints in ascending order and on a single line
 all unique combinations of three different digits, so that the first
 digit is lower than the second , and the second is lower than the third
-Combinations are seperated by a comma and a spcae */
+Combinations are seperated by a comma and a space */
 func PrintComb() {
 	// Declaring the variables for each digit of the number and the number
 	number := 0
