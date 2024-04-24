@@ -6,7 +6,6 @@ import "github.com/01-edu/z01"
 All possible values of type int have to go through.
 Cannot convert to int64 */
 func PrintNbr(n int) {
-
 	// Check if number is negative
 	if n < 0 {
 		z01.PrintRune('-')
@@ -31,7 +30,6 @@ func PrintNbr(n int) {
 
 	// Printing the n as string
 	for i := len(number) - 1; i >= 0; i-- {
-
 		z01.PrintRune(rune(number[i]))
 	}
 }
