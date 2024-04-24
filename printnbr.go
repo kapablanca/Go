@@ -2,44 +2,36 @@ package piscine
 
 import "github.com/01-edu/z01"
 
+/* Function that prints an int passed in parameter.
+All possible values of type int have to go through.
+Cannot convert to int64 */
 func PrintNbr(n int) {
-	if n < 0 {
 
+	// Check if number is negative
+	if n < 0 {
 		z01.PrintRune('-')
 		n = -n
 	}
 
-	if n == -9223372036854775808 {
-		z01.PrintRune('9')
-		n = 223372036854775808
+	// Store digits of number in a string variable
+	number := ""
+	lastDigit := 0
 
+	// Checking if n is 0
+	if n == 0 {
+		number += string('0')
+	}
+	// Extracting the last digit and appending it to the number until n = 0
+	for n != 0 {
+
+		lastDigit = n % 10
+		number += string(rune(lastDigit) + '0')
+		n /= 10
 	}
 
-	count := 0
-	num := n
-	div := 1
+	// Printing the n as string
+	for i := len(number) - 1; i >= 0; i-- {
 
-	for num/10 != 0 {
-		num = num / 10
-		count++
+		z01.PrintRune(rune(number[i]))
 	}
-
-	for count > 0 {
-
-		div = div * 10
-		count--
-	}
-
-	dig := 0
-
-	for div > 1 {
-
-		dig = n / div
-		n = n % div
-		div = div / 10
-		z01.PrintRune(rune(dig + 48))
-
-	}
-
-	z01.PrintRune(rune(n + 48))
 }
