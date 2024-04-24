@@ -1,7 +1,10 @@
 package piscine
 
-import "github.com/01-edu/z01"
+import (
+	"github.com/01-edu/z01"
+)
 
+// Prints 'T' if a number is negative, else 'F'.
 func IsNegative(nb int) {
 	if nb < 0 {
 		z01.PrintRune('T')
