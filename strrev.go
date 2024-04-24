@@ -1,13 +1,13 @@
 package piscine
 
+/* Function that reverses a string
+and returns it */
 func StrRev(s string) string {
-	aString := []byte(s)
+	reversedString := ""
+	sLen := StrLen(s)
 
-	length := len(aString)
-
-	for i := 0; i < length/2; i++ {
-		aString[i], aString[length-i-1] = aString[length-i-1], aString[i]
+	for i := sLen - 1; i >= 0; i-- {
+		reversedString += string(rune(s[i]))
 	}
-
-	return string(aString)
+	return reversedString
 }
