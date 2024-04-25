@@ -18,6 +18,11 @@ func Atoi(s string) int {
 	digit := 0
 	sign := 1
 
+	// Checking if the string is empty
+	if s == "" {
+		return 0
+	}
+
 	// Checking if there is a sign at the beginning
 	if (s[0] == '-' || s[0] == '+') && isNumber(rune(s[1])) {
 		sign = -1
