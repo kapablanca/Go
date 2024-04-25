@@ -1,10 +1,19 @@
 package piscine
 
+/*
+Function that returns the factorial of the int
+passed as parameter. Errors will return 0
+*/
 func RecursiveFactorial(nb int) int {
-	if nb > 20 || nb < 0 {
+	var factorial int
+	// Check if negative number
+	if nb < 0 {
 		return 0
-	} else if nb == 0 {
-		return 1
 	}
-	return nb * RecursiveFactorial(nb-1)
+	// Factorial of zero is 1
+	if nb == 0 {
+		factorial = 1
+	}
+	factorial *= RecursiveFactorial(nb - 1)
+	return factorial
 }
