@@ -1,11 +1,18 @@
 package piscine
 
+/*
+Function that returns true if the int passed
+
+as parameter is a prime number. Otherwise it returns false
+*/
 func IsPrime(nb int) bool {
-	if nb <= 1 {
+	// We consider 1 not a prime number
+	if nb < 2 {
 		return false
 	}
+
 	for i := 2; i*i <= nb; i++ {
-		if nb%i == 0 {
+		if i*i == nb {
 			return false
 		}
 	}
