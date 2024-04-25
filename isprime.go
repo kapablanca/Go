@@ -12,7 +12,7 @@ func IsPrime(nb int) bool {
 	}
 
 	for i := 2; i*i <= nb; i++ {
-		if i*i == nb {
+		if nb%i == 0 {
 			return false
 		}
 	}
