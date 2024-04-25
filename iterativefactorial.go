@@ -13,10 +13,8 @@ func IterativeFactorial(nb int) int {
 	// Calculate factorial
 	for i := 1; i <= nb; i++ {
 		factorial *= i
-	}
-	// Check for overflow
-	if factorial < 0 {
-		{
+		// Check for overflow
+		if factorial < 0 {
 			return 0
 		}
 	}
