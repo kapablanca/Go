@@ -25,7 +25,6 @@ func Atoi(s string) int {
 
 	// Checking if there is a sign at the beginning
 	if len(s) > 1 {
-
 		if (s[0] == '-' || s[0] == '+') && isNumber(rune(s[1])) {
 			sign = -1
 			// Removing it from the string
