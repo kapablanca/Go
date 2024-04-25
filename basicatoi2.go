@@ -8,7 +8,7 @@ func BasicAtoi2(s string) int {
 	digit := 0
 
 	for _, char := range s {
-		// Checking if the rune represents a valid number
+		// Checking if the char represents a valid number
 		if char < '0' || char > '9' {
 			return 0
 		}
