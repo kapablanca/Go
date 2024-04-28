@@ -1,9 +1,14 @@
 package piscine
 
+/* 
+Function that returns the n-th rune of a string.
+If not possible, it returns 0
+ */
 func NRune(s string, n int) rune {
-	translate := []rune(s)
-	if n > 0 && n-1 < len(translate) {
-		return translate[n-1]
+	for index, char := range s {
+		if index == n - 1 {
+			return char
+		}
 	}
 	return 0
 }
