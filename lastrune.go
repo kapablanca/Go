@@ -1,6 +1,10 @@
 package piscine
 
+/* 
+Function that returns the last rune of a string
+ */
 func LastRune(s string) rune {
-	translate := []rune(s)
-	return translate[len(translate)-1]
+	// Reverses the string
+	s = StrRev(s)
+	return FirstRune(s)
 }
