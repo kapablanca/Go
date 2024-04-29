@@ -4,8 +4,8 @@ package piscine
 // of toFind in s, or -1 if toFind not present in s
 func Index(s string, toFind string) int {
 	n := len(toFind)
-	for i := 0; i < len(s) - n; i++ {
-		if s[i:i + n] == toFind {
+	for i := 0; i < len(s)-n; i++ {
+		if s[i:i+n] == toFind {
 			return i
 		}
 	}
