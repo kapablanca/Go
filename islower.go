@@ -4,7 +4,7 @@ package piscine
 // the parameter contains only lowercase characters, else false
 func IsLower(s string) bool {
 	for _, char := range s {
-		if char <= 'a' || char >= 'z' {
+		if char < 'a' || char > 'z' {
 			return false
 		}
 	}

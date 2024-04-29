@@ -4,7 +4,7 @@ package piscine
 // parameter contains only uppercase characters, else false
 func IsUpper(s string) bool {
 	for _, char := range s {
-		if char <= 'A' || char >= 'Z' {
+		if char < 'A' || char > 'Z' {
 			return false
 		}
 	}
