@@ -6,5 +6,4 @@ package piscine
 //  of n different digits in ascending order.
 // n will be defined as : 0 < n < 10
 func PrintCombN(n int) {
-
 }
