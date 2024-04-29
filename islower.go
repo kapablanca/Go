@@ -1,11 +1,10 @@
 package piscine
 
+// Function that returns true if the string passed as
+// the parameter contains only lowercase characters, else false
 func IsLower(s string) bool {
-	if len(s) != AlphaCount(s) {
-		return false
-	}
-	for _, letter := range s {
-		if letter < 'a' || letter > 'z' {
+	for _, char := range s {
+		if char <= 'a' || char >= 'z' {
 			return false
 		}
 	}
