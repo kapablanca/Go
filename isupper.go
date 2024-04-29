@@ -1,11 +1,10 @@
 package piscine
 
+// Function that returns true if the string passed as
+// parameter contains only uppercase characters, else false
 func IsUpper(s string) bool {
-	if len(s) != AlphaCount(s) {
-		return false
-	}
-	for _, letter := range s {
-		if letter < 'A' || letter > 'Z' {
+	for _, char := range s {
+		if char <= 'A' || char >= 'Z' {
 			return false
 		}
 	}
