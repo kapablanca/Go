@@ -1,11 +1,22 @@
 package piscine
 
+// Function that returns true if the rune is a letter
+func isLetter(char rune) bool {
+	if (char <= 'A' && char <= 'Z') ||
+		(char <= 'a' && char <= 'z') {
+		return true
+	}
+	return false
+}
+
+// Function that counts the lettes of a string
+// and returns the count
 func AlphaCount(s string) int {
-	count_letters := 0
-	for i := 0; i < len(s); i++ {
-		if s[i] >= 'A' && s[i] <= 'Z' || s[i] >= 'a' && s[i] <= 'z' {
-			count_letters += 1
+	count := 0
+	for _, char := range s {
+		if isLetter(char) {
+			count++
 		}
 	}
-	return count_letters
+	return count
 }
