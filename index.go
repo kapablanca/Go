@@ -1,15 +1,13 @@
 package piscine
 
+// Function that returns the index of the first instance
+// of toFind in s, or -1 if toFind not present in s
 func Index(s string, toFind string) int {
-	s_slice := []rune(s)
-	s_toFInd := []rune(toFind)
-	length := len(s_toFInd)
-
-	for i := 0; i+length < len(s_slice); i++ {
-		if Compare(string(s_slice[i:i+length]), toFind) == 0 {
+	n := len(toFind)
+	for i := 0; i < len(s) - n; i++ {
+		if s[i:i + n] == toFind {
 			return i
 		}
 	}
-
 	return -1
 }
