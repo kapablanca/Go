@@ -12,7 +12,6 @@ func PrintNbrInOrder(n int) {
 
 	if n == 0 {
 		z01.PrintRune('0')
-
 	} else {
 		digits := []int{}
 		mod := -1
