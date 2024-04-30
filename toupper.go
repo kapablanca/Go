@@ -10,5 +10,4 @@ func ToUpper(s string) string {
 		}
 	}
 	return string(chars)
-
 }
