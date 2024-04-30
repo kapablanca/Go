@@ -24,9 +24,9 @@ func PrintNbrInOrder(n int) {
 
 		// Reorder the elements of digits in ascending order
 		for i := 0; i < len(digits)-1; i++ {
-			for j := i; j < len(digits)-1; j++ {
-				if digits[j+1] < digits[j] {
-					digits[j], digits[j+1] = digits[j+1], digits[j]
+			for j := i + 1; j < len(digits); j++ {
+				if digits[j] < digits[i] {
+					digits[j], digits[i] = digits[i], digits[j]
 				}
 			}
 		}
