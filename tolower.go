@@ -1,13 +1,13 @@
 package piscine
 
+// Function that lower cases for each letter in a string
 func ToLower(s string) string {
-	var answer string
-	for _, letter := range s {
-		if IsUpper(string(letter)) {
-			answer += string(rune(letter + 32))
-		} else {
-			answer += string(letter)
+	chars := []rune(s)
+
+	for i := 0; i < len(chars); i++ {
+		if IsUpper(string(chars[i])) {
+			chars[i] += ' '
 		}
 	}
-	return answer
+	return string(chars)
 }
