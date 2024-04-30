@@ -1,13 +1,14 @@
 package piscine
 
+// Function that capitalizes each letter in a string
 func ToUpper(s string) string {
-	var answer string
-	for _, letter := range s {
-		if IsLower(string(letter)) {
-			answer += string(rune(letter - 32))
-		} else {
-			answer += string(letter)
+	chars := []rune(s)
+
+	for i := 0; i < len(chars); i++ {
+		if IsLower(string(chars[i])) {
+			chars[i] -= ' '
 		}
 	}
-	return answer
+	return string(chars)
+
 }
