@@ -42,7 +42,7 @@ func Atoi(s string) int {
 
 	for _, char := range s {
 		// Checking if the char represents a valid number
-		if isNumber(char) {
+		if IsNumeric(string(char)) {
 			digit = int(char - '0')
 			number = 10*number + digit
 			// Return 0 if not valid char

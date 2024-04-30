@@ -4,7 +4,7 @@ package piscine
 // contains alphanumerical characters or is empty, else returns false
 func IsAlpha(s string) bool {
 	for _, char := range s {
-		if !IsUpper(string(char)) && !IsLower(string(char)) && !isNumber(char) {
+		if !IsUpper(string(char)) && !IsLower(string(char)) && !IsNumeric(string(char)) {
 			return false
 		}
 	}
