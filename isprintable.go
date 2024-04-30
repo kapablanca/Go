@@ -1,4 +1,4 @@
-package piscine 
+package piscine
 
 // Function that returns true if the string passed as a parameter
 // contains only printable characters, else returns false
