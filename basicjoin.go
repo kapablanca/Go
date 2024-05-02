@@ -1,9 +1,11 @@
 package piscine
 
+// Function that returns a concatenated string from the
+//  strings passed in as arguments
 func BasicJoin(elems []string) string {
-	var answer string
-	for _, word := range elems {
-		answer += word
+	concatenated := ""
+	for _, elem := range elems {
+		concatenated += elem
 	}
-	return answer
+	return concatenated
 }
