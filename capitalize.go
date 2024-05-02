@@ -20,7 +20,7 @@ func Capitalize(s string) string {
 				substring = ToLower(substring)
 			}
 			word += substring
-			//Append the non alpha char and clear the word variable
+			// Append the non alpha char and clear the word variable
 		} else {
 			capitalized += word + substring
 			word = ""
