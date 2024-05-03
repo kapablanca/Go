@@ -39,7 +39,7 @@ func printSlice(slice []rune) {
 	}
 }
 
-// Function that prints an int in anothe base passes as string parameter.
+// Function that prints an int in anothe base passed as string parameter.
 // The function has to manage negative numbers.
 // If the base is not valid, the functions prints NV(Not Valid)
 // Validity rules for a base:

@@ -1,43 +1,36 @@
 package piscine
 
-// func AtoiBase(s string, base string) int {
-// 	// Checking length of base
-// 	base_len := len(base)
-// 	if base_len < 2 {
-// 		return 0
-// 	}
-// 	// Checking unique characters or sign inside base
-// 	for _, character := range base {
-// 		if !IsUnique(base, string(character)) || character == '+' || character == '-' {
-// 			return 0
-// 		}
-// 	}
+// Function that takes two arguments:
+// s: a numeric string in a given base
+// base: a string representing the base
+// and returns the integer value of s in the decimal form.
+// The function does not have to manage negative numbers.
+// String number must contain only elements that are in base.
+// Only valid string numbers will be tested.
+// If the base is not valid, it returns 0.
+// Validity rules for a base:
+// Must contain at least 2 characters
+// Each character must be unique
+// A base should not contain + or - characters
+func AtoiBase(s string, base string) int {
+	if !isValid(base) {
+		return 0
+	}
 
-// 	// Stating variables
-// 	var numbers []int
-// 	var index_numerical_value int
-// 	var number int
-// 	var power int
-// 	var integer_number int
+	n := len(base)
+	reverseString := []rune{}
+	var number int
 
-// 	// Checking
-// 	for i, digit := range s {
-
-// 		power = len(s) - 1 - i
-
-// 		for j, digit_base := range base {
-// 			if digit == digit_base {
-
-// 				index_numerical_value = j
-// 				number = index_numerical_value * IterativePower(len(base), power)
-// 				numbers = append(numbers, number)
-
-// 			}
-// 		}
-// 	}
-// 	for _, number := range numbers {
-// 		integer_number += number
-// 	}
-
-// 	return integer_number
-// }
+	for i := len(s) - 1; i >= 0; i-- {
+		reverseString = append(reverseString, rune(s[i]))
+	}
+	// Transforming number to decimal
+	for power, char1 := range reverseString {
+		for digit, char2 := range base {
+			if char1 == char2 {
+				number += digit * IterativePower(n, power)
+			}
+		}
+	}
+	return number
+}
