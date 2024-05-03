@@ -9,9 +9,6 @@ import (
 // Program that prints the name of the program
 func main() {
 	arg := os.Args[0]
-	if len(arg) < 1 {
-		return
-	}
 	lastSlash := -1
 	hasExtension := false
 	lastDot := -1
@@ -33,4 +30,5 @@ func main() {
 	for _, char := range arg {
 		z01.PrintRune(char)
 	}
+	z01.PrintRune('\n')
 }
