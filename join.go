@@ -1,14 +1,15 @@
 package piscine
 
+// Function that returns the concatenation of all the strings
+// of a slice of string seperated by the sep
 func Join(strs []string, sep string) string {
-	var answer string
-
-	for _, word := range strs {
-		if answer == "" {
-			answer += word
+	joined := ""
+	for index, str := range strs {
+		if index == 0 {
+			joined += str
 		} else {
-			answer += sep + word
+			joined += sep + str
 		}
 	}
-	return answer
+	return joined
 }
