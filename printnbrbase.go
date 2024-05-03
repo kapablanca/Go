@@ -2,62 +2,21 @@ package piscine
 
 import "github.com/01-edu/z01"
 
-func PrintNbrBase(nbr int, base string) {
-	// Checking length of base
-	base_len := len(base)
-	if base_len < 2 {
-		PrintNV()
-		return
-	}
-	// Checking unique characters or sign inside base
-	for _, character := range base {
-		if !IsUnique(base, string(character)) || character == '+' || character == '-' {
-			PrintNV()
-			return
+// Checking if base contains + or -
+func hasSign(base string) bool {
+	for _, char := range base {
+		if char == '+' || char == '-' {
+			return true
 		}
 	}
-
-	// check if number is negative to add the "-" sign later
-	negative := false
-
-	if nbr < 0 {
-		negative = true
-	}
-
-	// empty slice to save the digits from the transformation
-	var digits_save []int
-	var reminder int
-	var quotient int = nbr
-
-	// Tranforming the digits
-	for quotient != 0 {
-		reminder = quotient % base_len
-		if reminder < 0 {
-			reminder = -reminder
-		}
-		digits_save = append(digits_save, reminder)
-		quotient /= base_len
-	}
-
-	// adding the minus sign in front of the number
-	if negative {
-		z01.PrintRune('-')
-	}
-
-	// printint the digits to the new base
-	for i := len(digits_save) - 1; i >= 0; i-- {
-		for j, character := range base {
-			if digits_save[i] == j {
-				z01.PrintRune(character)
-			}
-		}
-	}
+	return false
 }
 
-func IsUnique(word string, character string) bool {
-	for i, char1 := range word {
-		for j, char2 := range word {
-			if i != j && char1 == char2 {
+// Checking for uniqueness of characters
+func hasUnique(base string) bool {
+	for i := 0; i < len(base)-1; i++ {
+		for j := i + 1; j < len(base); j++ {
+			if base[i] == base[j] {
 				return false
 			}
 		}
@@ -65,7 +24,65 @@ func IsUnique(word string, character string) bool {
 	return true
 }
 
-func PrintNV() {
-	z01.PrintRune('N')
-	z01.PrintRune('V')
+// Checking validity of a base
+func isValid(base string) bool {
+	if len(base) < 2 || hasSign(base) || !hasUnique(base) {
+		return false
+	}
+	return true
+}
+
+// Print a slice of runes
+func printSlice(slice []rune) {
+	for _, char := range slice {
+		z01.PrintRune(char)
+	}
+}
+
+// Function that prints an int in anothe base passes as string parameter.
+// The function has to manage negative numbers.
+// If the base is not valid, the functions prints NV(Not Valid)
+// Validity rules for a base:
+// Must contain at least 2 characters
+// Each character must be unique
+// A base should not contain + or - characters
+func PrintNbrBase(nbr int, base string) {
+	if !isValid(base) {
+		z01.PrintRune('N')
+		z01.PrintRune('V')
+		return
+	}
+
+	n := len(base)
+	digits := []rune{}
+	var mod int
+
+	negative := false
+	if nbr < 0 {
+		negative = true
+	}
+	// Extracting the digits in the new base in reverse order
+	for nbr >= n || nbr <= -n {
+		mod = nbr % n
+		nbr /= n
+		if negative {
+			mod = -mod
+		}
+		digits = append(digits, rune(base[mod]))
+	}
+	if negative {
+		nbr = -nbr
+	}
+	digits = append(digits, rune(base[nbr]))
+
+	// Fixing the final form of the number and printing it
+	newNbr := []rune{}
+	if negative {
+		newNbr = append(newNbr, '-')
+	}
+
+	for i := len(digits) - 1; i >= 0; i-- {
+		newNbr = append(newNbr, digits[i])
+	}
+	printSlice(newNbr)
 }
