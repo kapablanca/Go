@@ -34,7 +34,7 @@ func validAlpha(n rune) bool {
 // A flag --upper should be implemented. When used, the program prints the result
 // in upper case. The flag will always be the first argument.
 func main() {
-
+	// Checking arguments length
 	arguments := os.Args[1:]
 	if len(arguments) < 1 {
 		return
