@@ -6,64 +6,58 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func main() {
-	arguments := os.Args[1:]
+// Changes valid string to rune
+func miniAtoi(s string) rune {
+	integer := 0
+	digit := 0
 
-	// Early exit if no arguments are provided.
-	if len(arguments) == 0 {
-		return
+	for _, char := range s {
+		digit = int(char - '0')
+		integer = 10*integer + digit
 	}
-
-	capital := false
-	if len(arguments) > 0 && arguments[0] == "--upper" {
-		capital = true
-		arguments = arguments[1:] // Adjust arguments to skip the --upper flag
-	}
-
-	// Variable to track if any output has been printed.
-	outputPrinted := false
-
-	for _, arg := range arguments {
-		if !IsNumeric(arg) {
-			z01.PrintRune(' ')
-			outputPrinted = true
-		} else {
-			digit := Atoi(arg)
-			if digit < 1 || digit > 26 {
-				z01.PrintRune(' ')
-				outputPrinted = true
-			} else {
-				if capital {
-					z01.PrintRune(rune(digit - 1 + 'A'))
-				} else {
-					z01.PrintRune(rune(digit - 1 + 'a'))
-				}
-				outputPrinted = true
-			}
-		}
-	}
-
-	// Print a newline character only if some output has been printed.
-	if outputPrinted {
-		z01.PrintRune('\n')
-	}
+	return rune(integer)
 }
 
-// IsNumeric checks if a string is a valid positive integer.
-func IsNumeric(s string) bool {
-	for _, c := range s {
-		if c < '0' || c > '9' {
-			return false
-		}
+// Checks validity of argument
+func validAlpha(n rune) bool {
+	if n < 0 || n > 25 {
+		return false
 	}
 	return true
 }
 
-// Atoi converts a string to an integer.
-func Atoi(s string) int {
-	n := 0
-	for _, c := range s {
-		n = n*10 + int(c-'0')
+// Program that prints the corresponding letter in the n position
+// of the latin alphabet, where n is each argument received.
+// For example 1 matches a, 2 matches b, etc. If n does not match
+// a valid position of the alphabet or if the argument is not an integer,
+// the program should print a space (" ").
+// A flag --upper should be implemented. When used, the program prints the result
+// in upper case. The flag will always be the first argument.
+func main() {
+
+	arguments := os.Args[1:]
+	if len(arguments) < 1 {
+		return
 	}
-	return n
+	// Checking for upper flag
+	isUpper := false
+	if arguments[0] == "--upper" {
+		isUpper = true
+		arguments = arguments[1:]
+	}
+
+	var n rune
+	for _, arg := range arguments {
+		n = miniAtoi(arg) - 1
+		// Not valid char
+		if !validAlpha(n) {
+			z01.PrintRune(' ')
+			// Upper flag active
+		} else if isUpper {
+			z01.PrintRune(n + 'A')
+			// No upper flag
+		} else {
+			z01.PrintRune(n + 'a')
+		}
+	}
 }
