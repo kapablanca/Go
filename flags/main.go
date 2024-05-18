@@ -21,7 +21,7 @@ func printOption(flag, option string) {
 	fmt.Println("\t" + " " + option)
 }
 
-// Checks for help flag
+// Checks for specific flag
 func hasFlag(slice []string, flag string) (int, bool) {
 	shortFlag := flag[1:3]
 	for index, arg := range slice {
@@ -49,12 +49,34 @@ func orderString(s string) string {
 // Insert a string to a given string
 func insertString(flagString, s string) string {
 	indexString := 0
+	// Finding the index of the string to be inserted
 	for index, char := range flagString {
 		if char == '=' {
 			indexString = index + 1
 		}
 	}
 	return s + flagString[indexString:]
+}
+
+// Finding the string argument
+func stringArg(args []string, oIndex, iIndex int) string {
+	oString := ""
+	iString := ""
+	answer := ""
+
+	if oIndex >= 0 {
+		oString = args[oIndex]
+	}
+	if iIndex >= 0 {
+		iString = args[iIndex]
+	}
+	// Find the string that is not a flag
+	for _, arg := range args {
+		if arg != oString && arg != iString {
+			answer = arg
+		}
+	}
+	return answer
 }
 
 func main() {
@@ -98,11 +120,17 @@ func main() {
 
 	insertIn, insert = hasFlag(arguments, flagInsert)
 	orderIn, order = hasFlag(arguments, flagOrder)
+	str := stringArg(arguments, orderIn, insertIn)
 
-	for index, arg := range arguments {
-		if insert && order {
-
-		}
+	// Insert the argument of flag insert
+	if insert {
+		str = insertString(arguments[insertIn], str)
 	}
+	// Order the string
+	if order {
+		str = orderString(str)
+	}
+
+	fmt.Println(str)
 
 }
