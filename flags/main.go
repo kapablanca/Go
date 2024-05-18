@@ -17,7 +17,7 @@ import (
 func printOption(flag, option string) {
 	shortFlag := flag[1:3]
 	fmt.Println(flag)
-	fmt.Print("  " + shortFlag)
+	fmt.Println("  " + shortFlag)
 	fmt.Println("\t" + " " + option)
 }
 
