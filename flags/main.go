@@ -25,18 +25,11 @@ func printOption(flag, option string) {
 func hasFlag(slice []string, flag string) (int, bool) {
 	shortFlag := flag[1:3]
 	for index, arg := range slice {
-		if len(arg) < len(shortFlag) {
-			continue
+		if len(arg) >= len(flag) && arg[:len(flag)] == flag {
+			return index, true
 		}
-		if len(arg) >= len(flag) {
-			if arg[:len(flag)] == flag || arg[:len(shortFlag)] == shortFlag {
-				return index, true
-			}
-			// If len(flag) > len(arg) >= len (shortFlag)
-		} else {
-			if arg[:len(shortFlag)] == shortFlag {
-				return index, true
-			}
+		if len(arg) >= len(shortFlag) && arg[:len(shortFlag)] == shortFlag {
+			return index, true
 		}
 	}
 	return -1, false
@@ -63,6 +56,7 @@ func insertString(flagString, s string) string {
 	for index, char := range flagString {
 		if char == '=' {
 			indexString = index + 1
+			break
 		}
 	}
 	return s + flagString[indexString:]
