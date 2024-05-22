@@ -1,6 +1,10 @@
+# Ignore the go-testing directory
 go-testing/
+
 # Ignore all executable files
 *
+
+# Exceptions to the global ignore rule for specific file types
 !*.go
 !*.md
 !*.txt
@@ -13,7 +17,10 @@ go-testing/
 !*.bat
 !*.cmd
 !**/
+
+# Ensure specific directories are not ignored
 !.gitignore
+!.vscode/
 
 # Windows executable files
 *.exe
@@ -22,9 +29,6 @@ go-testing/
 /bin/
 /pkg/
 /vendor/
-
-# Ignore the local configuration file for Go
-.vscode/
 
 # Ignore typical temporary files
 *.swp
