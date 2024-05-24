@@ -1,6 +1,8 @@
 package main
 
-import "github.com/01-edu/z01"
+import (
+	"github.com/01-edu/z01"
+)
 
 type point struct {
 	x int
@@ -12,39 +14,44 @@ func setPoint(ptr *point) {
 	ptr.y = 21
 }
 
-func numberToString(nbr int) string {
-	var digits []rune
-	var digitsString string
+func nbToString(nb int) string {
+	var answer []rune
+	var mod int
+	var digit rune
 
-	mod := 1
-
-	for mod != 0 {
-		mod = nbr % 10
-		if mod == 0 {
-			continue
-		}
-		digits = append(digits, rune(mod)+48)
-		nbr /= 10
+	for nb != 0 {
+		mod = nb % 10
+		digit = rune(mod) + '0'
+		answer = append(answer, digit)
+		nb /= 10
 	}
-
-	for i := len(digits) - 1; i >= 0; i-- {
-		digitsString += string(digits[i])
+	// Reverse the digits of slice
+	for i, j := 0, len(answer)-1; i < len(answer)/2; i, j = i+1, j-1 {
+		answer[i], answer[j] = answer[j], answer[i]
 	}
-	return digitsString
+	return string(answer)
 }
+func printPoint(x, y int) {
+	xString := nbToString(x)
+	yString := nbToString(y)
 
-func main() {
-	points := point{}
-	points_point := &points
+	xMessage := "x = " + xString
+	yMessage := "y = " + yString
+	message := xMessage + ", " + yMessage
 
-	setPoint(points_point)
-
-	x := numberToString(points.x)
-	y := numberToString(points.y)
-
-	sentence := "x = " + x + ", y = " + y + "\n"
-
-	for _, char := range sentence {
+	for _, char := range message {
 		z01.PrintRune(char)
 	}
+	z01.PrintRune('\n')
+
+}
+
+// The necessary changes must be applied so that the program works.
+// The function setPoint() must work with int.
+func main() {
+	points := &point{}
+
+	setPoint(points)
+
+	printPoint(points.x, points.y)
 }
