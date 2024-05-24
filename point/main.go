@@ -43,7 +43,6 @@ func printPoint(x, y int) {
 		z01.PrintRune(char)
 	}
 	z01.PrintRune('\n')
-
 }
 
 // The necessary changes must be applied so that the program works.
