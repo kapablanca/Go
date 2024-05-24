@@ -31,6 +31,7 @@ func nbToString(nb int) string {
 	}
 	return string(answer)
 }
+
 func printPoint(x, y int) {
 	xString := nbToString(x)
 	yString := nbToString(y)
