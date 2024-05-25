@@ -1,36 +1,24 @@
 package piscine
 
-func f(a, b int) int {
-	if a == b {
-		return 0
-	} else if a > b {
-		return 1
-	} else {
-		return -1
-	}
-}
-
+// Function that returns true, if the slice of int is sorted, otherwise false.
+// The function passed as an argument func(a, b int) returns a positive int if the
+// first argument is greater than the second argument, it returns 0 if they are equal
+// and it returns a negative int otherwise.
 func IsSorted(f func(a, b int) int, a []int) bool {
-	var sorting_list []int
-	one := 0
-	negative_one := 0
-
+	isPositive := false
+	isNegative := false
+	// Finding if there are a>b or b>a relations
 	for i := 0; i < len(a)-1; i++ {
-		sorting_list = append(sorting_list, f(a[i], a[i+1]))
-	}
-
-	for _, digit := range sorting_list {
-		if digit > 0 {
-			one = 1
+		if f(a[i], a[i+1]) > 0 {
+			isPositive = true
 		}
-		if digit < 0 {
-			negative_one = 1
+		if f(a[i], a[i+1]) < 0 {
+			isNegative = true
 		}
 	}
-
-	if one == 1 && negative_one == 1 {
+	// If the list is both ascending and descending
+	if isPositive && isNegative {
 		return false
-	} else {
-		return true
 	}
+	return true
 }
