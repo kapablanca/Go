@@ -1,47 +1,36 @@
 package main
 
 import (
+	"fmt"
 	"os"
-
-	"github.com/01-edu/z01"
 )
 
-// Function to print any string in stdout
-func PrintString(s string) {
-	for _, char := range s {
-		z01.PrintRune(char)
-	}
-}
-
-// Function to print error message
-func ErrorPrint(err error) {
-	message := "ERROR: " + err.Error()
-	PrintString(message)
-	z01.PrintRune('\n')
-}
-
+// Program that behaves like a simplified cat command. If the programm
+//
+//	is called without arguments, it should take the standard input(stding) and
+//
+// print it back on the standard output(stdout).
 func main() {
 	arguments := os.Args[1:]
-
+	// If no arguments, print back the Stdin
 	if len(arguments) < 1 {
-		buffer := make([]byte, 1)
-
+		arr := make([]byte, 1)
 		for {
-			_, err := os.Stdin.Read(buffer)
+			_, err := os.Stdin.Read(arr)
 			if err != nil {
 				break
 			}
-			PrintString(string(buffer))
+			fmt.Print(string(arr))
 		}
-		return
 	}
+
 	for _, arg := range arguments {
 		content, err := os.ReadFile(arg)
+		// Print the error
 		if err != nil {
-			ErrorPrint(err)
-			os.Exit(1)
+			fmt.Print("ERROR: " + err.Error())
+			continue
 		}
-		content_string := string(content)
-		PrintString(content_string)
+		fmt.Print(string(content))
 	}
 }
