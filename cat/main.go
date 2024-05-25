@@ -36,8 +36,8 @@ func main() {
 		content, err := os.ReadFile(arg)
 		// Print the error
 		if err != nil {
-			printString("ERROR: " + err.Error())
-			continue
+			printString("ERROR: " + err.Error() + "\n")
+			os.Exit(1)
 		}
 		printString(string(content))
 	}
