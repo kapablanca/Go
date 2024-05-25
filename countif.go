@@ -1,12 +1,13 @@
 package piscine
 
+// Functioni that retunrs the number of elements of a string slice,
+// for which the f function returns true.
 func CountIf(f func(string) bool, tab []string) int {
-	var list []string
-
-	for _, str := range tab {
-		if f(str) {
-			list = append(list, str)
+	count := 0
+	for _, elem := range tab {
+		if f(elem) {
+			count++
 		}
 	}
-	return len(list)
+	return count
 }
