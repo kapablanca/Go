@@ -7,7 +7,7 @@ import (
 )
 
 // Print function
-func print(s string) {
+func printString(s string) {
 	for _, char := range s {
 		z01.PrintRune(char)
 	}
@@ -28,7 +28,7 @@ func main() {
 			if err != nil {
 				break
 			}
-			print(string(arr))
+			printString(string(arr))
 		}
 	}
 
@@ -36,9 +36,9 @@ func main() {
 		content, err := os.ReadFile(arg)
 		// Print the error
 		if err != nil {
-			print("ERROR: " + err.Error())
+			printString("ERROR: " + err.Error())
 			continue
 		}
-		print(string(content))
+		printString(string(content))
 	}
 }
