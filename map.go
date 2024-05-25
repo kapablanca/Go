@@ -1,11 +1,12 @@
 package piscine
 
+// Function that for an int slice applies a function on each element of that
+// slice and returns a slice of all the return values
 func Map(f func(int) bool, a []int) []bool {
-	var listBools []bool
+	var slice []bool
 
-	for _, nbr := range a {
-		listBools = append(listBools, f(nbr))
+	for _, elem := range a {
+		slice = append(slice, f(elem))
 	}
-
-	return listBools
+	return slice
 }
