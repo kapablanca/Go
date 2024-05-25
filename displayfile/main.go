@@ -37,5 +37,5 @@ func main() {
 	file.Read(arr)
 	// Saving the contents into a variable and print it
 	text := string(arr)
-	fmt.Println(text)
+	fmt.Print(text)
 }
