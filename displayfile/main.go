@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"os"
 )
 
@@ -27,12 +26,17 @@ func main() {
 	}
 	// Make sure the file will close eventually
 	defer file.Close()
-	// Reading the contents of the file
-	content, err := io.ReadAll(file)
+
+	// Get file info to know the size of file
+	fileInfo, err := file.Stat()
 	if err != nil {
 		return
 	}
-
-	text := string(content)
+	// Reading the contents of the file into a byte slice
+	fileSize := fileInfo.Size()
+	arr := make([]byte, fileSize)
+	file.Read(arr)
+	// Saving the contents into a variable and print it
+	text := string(arr)
 	fmt.Print(text)
 }
