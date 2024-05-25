@@ -1,9 +1,13 @@
 package piscine
 
-func Any(f func(string) bool, a []string) bool {
-	for _, char := range a {
-		if f(char) {
-			return f(char)
+// Function that returns true for a string slice, if
+//  when that string slice is passed through an f function,
+// at least one elements returns true
+
+func Any(f func(string) bool, a[]string) bool {
+	for _, elem := ramge a {
+		if f(elem){
+			return true
 		}
 	}
 	return false
