@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
+
+// Print function
+func print(s string) {
+	for _, char := range s {
+		z01.PrintRune(char)
+	}
+}
 
 // Program that behaves like a simplified cat command. If the programm
 //
@@ -20,7 +28,7 @@ func main() {
 			if err != nil {
 				break
 			}
-			fmt.Print(string(arr))
+			print(string(arr))
 		}
 	}
 
@@ -28,9 +36,9 @@ func main() {
 		content, err := os.ReadFile(arg)
 		// Print the error
 		if err != nil {
-			fmt.Print("ERROR: " + err.Error())
+			print("ERROR: " + err.Error())
 			continue
 		}
-		fmt.Print(string(content))
+		print(string(content))
 	}
 }
