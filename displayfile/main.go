@@ -6,8 +6,7 @@ import (
 )
 
 // Program that displays on the standard output the content of a file,
-//
-//	give as an argument
+// given as an argument
 func main() {
 	argument := os.Args[1:]
 
