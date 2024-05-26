@@ -162,7 +162,7 @@ func apply(s string, a, b int) (bool, int) {
 }
 
 // Print function
-func print(s string) {
+func printString(s string) {
 	byteSlice := []byte(s)
 	os.Stdout.Write(byteSlice)
 }
@@ -209,5 +209,5 @@ func main() {
 		return
 	}
 	// Print the final result
-	print(itoa(result))
+	printString(itoa(result))
 }
