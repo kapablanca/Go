@@ -192,12 +192,12 @@ func main() {
 	// Check division and modulo by 0
 	if arguments[2] == "0" {
 		if arguments[1] == "/" {
-			byteDiv := []byte("No division by 0")
+			byteDiv := []byte("No division by 0\n")
 			os.Stdout.Write(byteDiv)
 			return
 		}
 		if arguments[1] == "%" {
-			byteMod := []byte("No modulo by 0")
+			byteMod := []byte("No modulo by 0\n")
 			os.Stdout.Write(byteMod)
 			return
 		}
