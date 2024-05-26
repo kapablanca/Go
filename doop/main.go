@@ -3,24 +3,71 @@ package main
 import "os"
 
 // Functions of operations
-func addition(a, b int) int {
-	return a + b
+func addition(a, b int) (bool, int) {
+	valid := true
+	result := a + b
+	// Overflow check
+	if (a > 0 && b > 0) && result < 0 {
+		valid = false
+	}
+	if (a < 0 && b < 0) && result > 0 {
+		valid = false
+	}
+	return valid, result
 }
 
-func subtraction(a, b int) int {
-	return a - b
+func subtraction(a, b int) (bool, int) {
+	valid := true
+	result := a - b
+	// Overflow check
+	if (a < 0 && b > 0) && result > 0 {
+		valid = false
+	}
+	if (a > 0 && b < 0) && result < 0 {
+		valid = false
+	}
+	return valid, result
 }
 
-func multiplication(a, b int) int {
-	return a * b
+func multiplication(a, b int) (bool, int) {
+	valid := true
+	result := a * b
+	// Overflow check
+	if (a > 0 && b > 0) || (a < 0 && b < 0) &&
+		result < 0 {
+		valid = false
+	}
+	if (a < 0 && b > 0) || (a > 0 && b < 0) &&
+		result > 0 {
+		valid = false
+	}
+
+	return valid, result
 }
 
-func division(a, b int) int {
-	return a / b
+func division(a, b int) (bool, int) {
+	valid := true
+	result := 0
+	// Division by 0 check
+	if b == 0 {
+		valid = false
+		return valid, result
+	}
+	result = a / b
+
+	return valid, result
 }
 
-func modulo(a, b int) int {
-	return a % b
+func modulo(a, b int) (bool, int) {
+	valid := true
+	result := 0
+	// Modulo by 0 check
+	if b == 0 {
+		valid = false
+		return valid, result
+	}
+	result = a & b
+	return valid, result
 }
 
 // ////////////////////////////////////////////////
@@ -36,45 +83,85 @@ func validOperator(s string) bool {
 	return false
 }
 
-// Check division or modulo
-
-// Apply function
-func apply(s string) int {
-	operations := []func(a, b int) int{addition, subtraction, multiplication, division, modulo}
-	operators := []string{"+", "-", "*", "/", "%"}
-
-	for index, operator := range operators {
-		if s == operator {
-
-		}
-	}
-
-}
-
 // String to integer
-func atoi(s string) int {
+func atoi(s string) (bool, int) {
+	sign := 1
+	number := 0
+	valid := true
+	// Find the minus sign
 	if s[0] == '-' {
 		s = s[1:]
+		sign = -1
 	}
-	number := 0
+	// Convert to integer
 	for _, char := range s {
+		// Check if char is numeric
+		if char < '0' || char > '9' {
+			valid = false
+			break
+		}
 		char -= '0'
 		number = 10*number + int(char)
 	}
-	return number
+	// Check if there is an ovreflow
+	if (sign > 0 && sign*number < 0) ||
+		(sign < 0 && sign*number > 0) {
+		valid = false
+	}
+	return valid, sign * number
 }
 
-// Valid integer
-func isInteger(s string) bool {
-	for index, char := range s {
-		if index == 1 && char == '-' {
-			continue
+// Integer to string function
+func itoa(number int) string {
+	negative := false
+	digit := 0
+	var char rune
+	digits := []rune{}
+	// Check the sign
+	if number < 0 {
+		negative = true
+	}
+	// Check for number equal to 0
+	if number == 0 {
+		return "0"
+	}
+	// Extract the digits
+	for number != 0 {
+		digit = number % 10
+		if negative {
+			digit *= -1
 		}
-		if char < '0' || char > '9' {
-			return false
+		char = rune(digit) + '0'
+		digits = append(digits, char)
+		number /= 10
+	}
+	// Reverse the digits order
+	for i, j := 0, len(digits)-1; i < len(digits)/2; i, j = i+1, j-1 {
+		digits[i], digits[j] = digits[j], digits[i]
+	}
+	return string(digits)
+}
+
+// Apply function
+func apply(s string, a, b int) (bool, int) {
+	operations := []func(a, b int) (bool, int){addition, subtraction, multiplication, division, modulo}
+	operators := []string{"+", "-", "*", "/", "%"}
+	result := 0
+	valid := true
+
+	for index, operator := range operators {
+		if s == operator {
+			valid, result = operations[index](a, b)
+			break
 		}
 	}
-	return true
+	return valid, result
+}
+
+// Print function
+func print(s string) {
+	byteSlice := []byte(s)
+	os.Stdout.Write(byteSlice)
 }
 
 // Program that has to be used with three arguments:
@@ -93,9 +180,12 @@ func main() {
 		return
 	}
 	// Check valid integers
-	if !isInteger(arguments[0]) || !isInteger(arguments[2]) {
+	validFirst, firstInt := atoi(arguments[0])
+	validSecond, secondInt := atoi(arguments[2])
+	if !validFirst || !validSecond {
 		return
 	}
+
 	// Check division and modulo by 0
 	if arguments[2] == "0" {
 		if arguments[1] == "/" {
@@ -109,5 +199,11 @@ func main() {
 			return
 		}
 	}
-
+	// Apply the appropriate operation
+	valid, result := apply(arguments[1], firstInt, secondInt)
+	// Check if there was an overflow error
+	if !valid {
+		return
+	}
+	print(itoa(result))
 }
