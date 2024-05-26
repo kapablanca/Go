@@ -209,5 +209,5 @@ func main() {
 		return
 	}
 	// Print the final result
-	printString(itoa(result))
+	printString(itoa(result) + "\n")
 }
