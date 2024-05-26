@@ -33,11 +33,11 @@ func multiplication(a, b int) (bool, int) {
 	valid := true
 	result := a * b
 	// Overflow check
-	if (a > 0 && b > 0) || (a < 0 && b < 0) &&
+	if ((a > 0 && b > 0) || (a < 0 && b < 0)) &&
 		result < 0 {
 		valid = false
 	}
-	if (a < 0 && b > 0) || (a > 0 && b < 0) &&
+	if ((a < 0 && b > 0) || (a > 0 && b < 0)) &&
 		result > 0 {
 		valid = false
 	}
@@ -135,6 +135,9 @@ func itoa(number int) string {
 		digits = append(digits, char)
 		number /= 10
 	}
+	if negative {
+		digits = append(digits, '-')
+	}
 	// Reverse the digits order
 	for i, j := 0, len(digits)-1; i < len(digits)/2; i, j = i+1, j-1 {
 		digits[i], digits[j] = digits[j], digits[i]
@@ -205,5 +208,6 @@ func main() {
 	if !valid {
 		return
 	}
+	// Print the final result
 	print(itoa(result))
 }
