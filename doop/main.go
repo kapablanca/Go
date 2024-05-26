@@ -66,7 +66,7 @@ func modulo(a, b int) (bool, int) {
 		valid = false
 		return valid, result
 	}
-	result = a & b
+	result = a % b
 	return valid, result
 }
 
