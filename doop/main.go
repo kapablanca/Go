@@ -1,31 +1,75 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "os"
 
-// Maximum value of integers
-const (
-	MaxInt = 9223372036854775807
-	MinInt = -9223372036854775808
-)
+// Functions of operations
+func addition(a, b int) int {
+	return a + b
+}
 
-// Checking is string is numerical value
-func isNumber(s string) bool {
-	if s == "" {
-		return false
-	}
+func subtraction(a, b int) int {
+	return a - b
+}
 
-	start := 0
-	if s[0] == '-' || s[0] == '+' {
-		if len(s) == 1 {
-			return false
+func multiplication(a, b int) int {
+	return a * b
+}
+
+func division(a, b int) int {
+	return a / b
+}
+
+func modulo(a, b int) int {
+	return a % b
+}
+
+// ////////////////////////////////////////////////
+// Check the operator
+func validOperator(s string) bool {
+	operators := []string{"+", "-", "*", "/", "%"}
+
+	for _, operator := range operators {
+		if s == operator {
+			return true
 		}
-		start = 1
+	}
+	return false
+}
+
+// Check division or modulo
+
+// Apply function
+func apply(s string) int {
+	operations := []func(a, b int) int{addition, subtraction, multiplication, division, modulo}
+	operators := []string{"+", "-", "*", "/", "%"}
+
+	for index, operator := range operators {
+		if s == operator {
+
+		}
 	}
 
-	for _, char := range s[start:] {
+}
+
+// String to integer
+func atoi(s string) int {
+	if s[0] == '-' {
+		s = s[1:]
+	}
+	number := 0
+	for _, char := range s {
+		char -= '0'
+		number = 10*number + int(char)
+	}
+	return number
+}
+
+// Valid integer
+func isInteger(s string) bool {
+	for index, char := range s {
+		if index == 1 && char == '-' {
+			continue
+		}
 		if char < '0' || char > '9' {
 			return false
 		}
@@ -33,187 +77,37 @@ func isNumber(s string) bool {
 	return true
 }
 
-// Checking validity of operator
-func checkOperator(operator string) bool {
-	valid_operators := [...]string{"+", "-", "/", "*", "%"}
-
-	if len(operator) != 1 {
-		return false
-	}
-
-	fmt.Println(operator)
-
-	for _, symbol := range valid_operators {
-		if operator == symbol {
-			return true
-		}
-	}
-	return false
-}
-
-// Sanitizing arguments
-func checkArgs(args []string) bool {
-	if !isNumber(args[0]) || !isNumber(args[2]) {
-		return false
-	}
-	if !checkOperator(args[1]) {
-		return false
-	}
-
-	return true
-}
-
-// Mathematical operations functions
-func add(n1, n2 int) int {
-	// if n1 > MaxInt-n2 || n1 < MinInt-n2 {
-	// 	os.Exit(0)
-	// }
-	n := n1 + n2
-	fmt.Printf("Adding: %d + %d = %d\n", n1, n2, n)
-	return n
-}
-
-func subtract(n1, n2 int) int {
-	if n1 > MaxInt+n2 || n1 < MinInt+n2 {
-		os.Exit(0)
-	}
-	n := n1 - n2
-	return n
-}
-
-func multiply(n1, n2 int) int {
-	if n1 > MaxInt/n2 || n1 < MinInt/n2 {
-		os.Exit(0)
-	}
-	n := n1 * n2
-	return n
-}
-
-func divide(n1, n2 int) int {
-	if n2 == 0 {
-		os.Stdout.WriteString("No division by 0\n")
-		os.Exit(0)
-	}
-	n := n1 / n2
-	return n
-}
-
-func modulo(n1, n2 int) int {
-	if n2 == 0 {
-		os.Stdout.WriteString("No modulo by 0\n")
-		os.Exit(0)
-	}
-	n := n1 % n2
-	return n
-}
-
-// Converting string to a number
-func atoi(s string) int {
-	number := 0
-	sign := 1
-	start := 0
-
-	if s[0] == '-' || s[0] == '+' {
-		if s[0] == '-' {
-			sign = -1
-		}
-		start = 1
-	}
-
-	for i := start; i < len(s); i++ {
-		digit := s[i] - '0'
-		number = number*10 + int(digit)
-	}
-	return number * sign
-}
-
-// Function to apply the selected operator
-func applyOperator(f func(int, int) int, n1, n2 int) int {
-	result := f(n1, n2)
-	fmt.Printf("Applied operation, result: %d\n", result)
-	return result
-}
-
-// Convert number to string
-func itoa(num int) string {
-	// Special case for zero
-	if num == 0 {
-		return "0"
-	}
-
-	// Check if the number is negative
-	isNegative := num < 0
-	if isNegative {
-		num = -num // Make the number positive for processing
-	}
-
-	// This will store the digits of the number.
-	digits := []byte{}
-
-	// Extract digits of the number
-	for num > 0 {
-		digit := num % 10
-		// Prepend digit to the slice (since we're reading the digits in reverse order)
-		digits = append([]byte{byte('0' + digit)}, digits...)
-		num /= 10
-	}
-
-	// If the number was negative, prepend a '-' sign
-	if isNegative {
-		digits = append([]byte{'-'}, digits...)
-	}
-
-	// Convert byte slice to string
-	return string(digits)
-}
-
-// Main Program
+// Program that has to be used with three arguments:
+// a value, an operator(+, -, *, /, %) and another value
+// In case of invalid operator, value of arguments or overflow,
+// program prints nothing. The program has to handle the modulo and division
+// operations by 0 with a message.
 func main() {
-	if len(os.Args) != 4 {
-		return
-	}
 	arguments := os.Args[1:]
-
-	if !checkArgs(arguments) {
+	// Check number of arguments
+	if len(arguments) != 3 {
 		return
 	}
-
-	valid_operators := [...]string{"+", "-", "/", "*", "%"}
-
-	list_operations := []func(int, int) int{add, subtract, divide, multiply, modulo}
-
-	n1 := atoi(arguments[0])
-	n2 := atoi(arguments[2])
-	fmt.Printf("Parsed integers: n1=%d, n2=%d\n", n1, n2)
-
-	operation_index := -1
-
-	for index, oper := range valid_operators {
-		if arguments[1] == oper {
-			fmt.Println("I fount a valid operator")
-			operation_index = index
-			break
+	// Check valid operator
+	if !validOperator(arguments[1]) {
+		return
+	}
+	// Check valid integers
+	if !isInteger(arguments[0]) || !isInteger(arguments[2]) {
+		return
+	}
+	// Check division and modulo by 0
+	if arguments[2] == "0" {
+		if arguments[1] == "/" {
+			byteDiv := []byte("No division by 0")
+			os.Stdout.Write(byteDiv)
+			return
+		}
+		if arguments[1] == "%" {
+			byteMod := []byte("No modulo by 0")
+			os.Stdout.Write(byteMod)
+			return
 		}
 	}
 
-	fmt.Print(operation_index)
-
-	if operation_index == -1 {
-		fmt.Println(("Invalid Operation Index"))
-	}
-
-	if operation_index == 4 && n2 == 0 {
-		os.Stdout.WriteString("No modulo by 0")
-		return
-	}
-
-	if operation_index == 2 && n2 == 0 {
-		os.Stdout.WriteString("No division by 0")
-		return
-	}
-	fmt.Printf("Selected operator %s at index %d\n", arguments[1], operation_index)
-
-	result := applyOperator(list_operations[operation_index], n1, n2)
-	fmt.Println(result)
-	os.Stdout.WriteString(itoa(result) + "\n")
 }
