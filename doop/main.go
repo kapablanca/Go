@@ -41,6 +41,9 @@ func multiplication(a, b int) (bool, int) {
 		result > 0 {
 		valid = false
 	}
+	if result/b != a {
+		valid = false
+	}
 
 	return valid, result
 }
