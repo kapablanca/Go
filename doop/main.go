@@ -3,9 +3,10 @@ package main
 import "os"
 
 // Functions of operations
-func addition(a, b int) (bool, int) {
+func addition(a, b int) (bool, int, string) {
 	valid := true
 	result := a + b
+	message := ""
 	// Overflow check
 	if (a > 0 && b > 0) && result < 0 {
 		valid = false
@@ -13,12 +14,13 @@ func addition(a, b int) (bool, int) {
 	if (a < 0 && b < 0) && result > 0 {
 		valid = false
 	}
-	return valid, result
+	return valid, result, message
 }
 
-func subtraction(a, b int) (bool, int) {
+func subtraction(a, b int) (bool, int, string) {
 	valid := true
 	result := a - b
+	message := ""
 	// Overflow check
 	if (a < 0 && b > 0) && result > 0 {
 		valid = false
@@ -26,12 +28,13 @@ func subtraction(a, b int) (bool, int) {
 	if (a > 0 && b < 0) && result < 0 {
 		valid = false
 	}
-	return valid, result
+	return valid, result, message
 }
 
-func multiplication(a, b int) (bool, int) {
+func multiplication(a, b int) (bool, int, string) {
 	valid := true
 	result := a * b
+	message := ""
 	// Overflow check
 	if ((a > 0 && b > 0) || (a < 0 && b < 0)) &&
 		result < 0 {
@@ -45,32 +48,36 @@ func multiplication(a, b int) (bool, int) {
 		valid = false
 	}
 
-	return valid, result
+	return valid, result, message
 }
 
-func division(a, b int) (bool, int) {
+func division(a, b int) (bool, int, string) {
 	valid := true
 	result := 0
+	message := ""
 	// Division by 0 check
 	if b == 0 {
 		valid = false
-		return valid, result
+		message = "No division by 0"
+		return valid, result, message
 	}
 	result = a / b
 
-	return valid, result
+	return valid, result, message
 }
 
-func modulo(a, b int) (bool, int) {
+func modulo(a, b int) (bool, int, string) {
 	valid := true
 	result := 0
+	message := ""
 	// Modulo by 0 check
 	if b == 0 {
 		valid = false
-		return valid, result
+		message = "No modulo by 0"
+		return valid, result, message
 	}
 	result = a % b
-	return valid, result
+	return valid, result, message
 }
 
 // ////////////////////////////////////////////////
@@ -149,24 +156,26 @@ func itoa(number int) string {
 }
 
 // Apply function
-func apply(s string, a, b int) (bool, int) {
-	operations := []func(a, b int) (bool, int){addition, subtraction, multiplication, division, modulo}
+func apply(s string, a, b int) (bool, int, string) {
+	operations := []func(a, b int) (bool, int, string){addition, subtraction, multiplication, division, modulo}
 	operators := []string{"+", "-", "*", "/", "%"}
 	result := 0
 	valid := true
+	message := ""
 
 	for index, operator := range operators {
 		if s == operator {
-			valid, result = operations[index](a, b)
+			valid, result, message = operations[index](a, b)
 			break
 		}
 	}
-	return valid, result
+	return valid, result, message
 }
 
 // Print function
 func printString(s string) {
 	byteSlice := []byte(s)
+	byteSlice = append(byteSlice, '\n')
 	os.Stdout.Write(byteSlice)
 }
 
@@ -191,26 +200,16 @@ func main() {
 	if !validFirst || !validSecond {
 		return
 	}
-
-	// Check division and modulo by 0
-	if arguments[2] == "0" {
-		if arguments[1] == "/" {
-			byteDiv := []byte("No division by 0\n")
-			os.Stdout.Write(byteDiv)
-			return
-		}
-		if arguments[1] == "%" {
-			byteMod := []byte("No modulo by 0\n")
-			os.Stdout.Write(byteMod)
-			return
-		}
-	}
 	// Apply the appropriate operation
-	valid, result := apply(arguments[1], firstInt, secondInt)
+	valid, result, message := apply(arguments[1], firstInt, secondInt)
+	// Check if there is a div or mod message
+	if message != "" {
+		printString(message)
+	}
 	// Check if there was an overflow error
 	if !valid {
 		return
 	}
 	// Print the final result
-	printString(itoa(result) + "\n")
+	printString(itoa(result))
 }
