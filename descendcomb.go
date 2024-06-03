@@ -23,7 +23,7 @@ func DescendComb() {
 			z01.PrintRune(digit3)
 			z01.PrintRune(digit4)
 			// Printing seperator
-			if i != 0 {
+			if i != 1 {
 				z01.PrintRune(',')
 				z01.PrintRune(' ')
 			}
