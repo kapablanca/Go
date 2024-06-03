@@ -2,27 +2,31 @@ package piscine
 
 // Function that seperates the words of a string by separator space.
 //  If there are more spaces than needed to separate words, then space
-//  is intended as a string and is appended in the final string slice.
+//  is intended as an empty string and is appended in the final string slice.
 func splitSpace(s string) []string {
 	words := []string{}
-	word := []byte{}
-	countSpaces := 0
+	word := []rune{}
+	spaceBefore := false
 
-	for i := 0; i < len(s); i++ {
-		if s[i] == ' ' {
-			countSpaces++
+	for _, char := range s {
+		// Check if there is an empty string
+		if char == ' ' && spaceBefore {
+			words = append(words, string(word))
+			spaceBefore = false
+			// Append the word to words if there is a separator
+		} else if char == ' ' {
+			spaceBefore = true
 			words = append(words, string(word))
 			word = nil
+			// Append char to word
 		} else {
-			word = append(word, s[i])
+			spaceBefore = false
+			word = append(word, char)
 		}
 	}
+	// Append the last word if there is one to words
 	if word != nil {
 		words = append(words, string(word))
-	}
-	for countSpaces >= len(words) {
-		words = append(words, " ")
-		countSpaces--
 	}
 	return words
 }
