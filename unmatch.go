@@ -9,10 +9,10 @@ func Unmatch(a []int) int {
 	for _, i := range a {
 		numbersFreq[i]++
 	}
-	// Finding pairs
-	for key, value := range numbersFreq {
-		if value%2 != 0 {
-			return key
+	// Finding if the number is paired by iterating in the slice order
+	for _, i := range a {
+		if numbersFreq[i]%2 != 0 {
+			return i
 		}
 	}
 	return -1
