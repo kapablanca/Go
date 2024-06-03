@@ -17,7 +17,7 @@ func splitSpace(s string) []string {
 		} else if char == ' ' {
 			spaceBefore = true
 			words = append(words, string(word))
-			word = nil
+			word = word[:0]
 			// Append char to word
 		} else {
 			spaceBefore = false
