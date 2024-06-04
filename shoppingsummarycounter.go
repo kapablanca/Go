@@ -1,39 +1,44 @@
 package piscine
 
-func SplitOneSpace(str string) []string {
-	var words []string
-	currentWord := ""
+// Function that seperates the words of a string by separator space.
+//  If there are more spaces than needed to separate words, then space
+//  is intended as an empty string and is appended in the final string slice.
+func splitSpace(s string) []string {
+	words := []string{}
+	word := []rune{}
+	spaceBefore := false
 
-	// Process each character in the string
-	for i := 0; i < len(str); i++ {
-		if str[i] == ' ' {
-			// Check if currentWord has accumulated any characters before adding it to words
-			// if currentWord != "" {
-			words = append(words, currentWord)
-			currentWord = "" // Reset currentWord after adding it to words
-			// }
-			// Continue to next iteration to skip additional space processing
-			continue
+	for _, char := range s {
+		// Check if there is an empty string
+		if char == ' ' && spaceBefore {
+			words = append(words, string(word))
+			spaceBefore = false
+			// Append the word to words if there is a separator
+		} else if char == ' ' {
+			spaceBefore = true
+			words = append(words, string(word))
+			word = word[:0]
+			// Append char to word
+		} else {
+			spaceBefore = false
+			word = append(word, char)
 		}
-		// Add non-space characters to currentWord
-		currentWord += string(str[i])
 	}
-
-	// Add the last accumulated word to words if not empty
-
-	words = append(words, currentWord)
-
+	// Append the last word if there is one to words
+	if word != nil {
+		words = append(words, string(word))
+	}
 	return words
 }
 
+// Function that counts the total amount of times each item appears in a string
+// and returns a summary including the item and its number of appearances as an int
 func ShoppingSummaryCounter(str string) map[string]int {
-	items_slice := SplitOneSpace(str)
-
-	shopping_list := make(map[string]int)
-
-	for _, item := range items_slice {
-		shopping_list[item]++
+	shoppingList := splitSpace(str)
+	summary := make(map[string]int)
+	// Count the times an item appears on the list
+	for _, item := range shoppingList {
+		summary[item]++
 	}
-
-	return shopping_list
+	return summary
 }

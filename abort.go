@@ -1,14 +1,10 @@
 package piscine
 
+// Function that returns the median of five int arguments
 func Abort(a, b, c, d, e int) int {
-	list := [5]int{a, b, c, d, e}
-
-	for i := 0; i < len(list)-1; i++ {
-		for j := 0; j < len(list)-i-1; j++ {
-			if list[j] > list[j+1] {
-				list[j], list[j+1] = list[j+1], list[j]
-			}
-		}
-	}
-	return list[2]
+	numbers := []int{a, b, c, d, e}
+	// Sort the values to find the median
+	SortIntegerTable(numbers)
+	// Median is the middle value(3rd value in 5 elements)
+	return numbers[2]
 }
