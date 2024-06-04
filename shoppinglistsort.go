@@ -1,13 +1,16 @@
 package piscine
 
+// Function that takes a slice of strings and sorts it,
+// according to the string length, in ascending order.
+// Strings within the inpyt slice must be of different lengths.
 func ShoppingListSort(slice []string) []string {
-	for i := 0; i < len(slice)-1; i++ {
-		for j := 0; j < len(slice)-i-1; j++ {
-			if len(slice[j]) > len(slice[j+1]) {
-				slice[j], slice[j+1] = slice[j+1], slice[j]
+	// Use bubble sort to the slice
+	for range slice {
+		for i := 0; i < len(slice)-1; i++ {
+			if len(slice[i]) > len(slice[i+1]) {
+				slice[i], slice[i+1] = slice[i+1], slice[i]
 			}
 		}
 	}
-
 	return slice
 }
