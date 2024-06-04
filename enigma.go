@@ -7,5 +7,4 @@ package piscine
 func Enigma(a ***int, b *int, c *******int, d ****int) {
 	// Change all the values at the same time
 	*******c, ****d, ***a, *b = ***a, *******c, *b, ****d
-
 }
