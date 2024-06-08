@@ -42,7 +42,7 @@ func LoafOfBread(str string) string {
 	count := 0
 	word := []rune{}
 	sentence := []rune{}
-	//Loop through the string to create new 5 char words
+	// Loop through the string to create new 5 char words
 	for _, char := range str {
 		count += 1
 		// If we reached the 5 chars to format a word
