@@ -1,15 +1,18 @@
 package piscine
 
+// Function that returns the maximum value in a slice of integers.
+// If the slice is empty, return 0.
 func Max(a []int) int {
-	if len(a) < 1 {
+	// Check if slice is empty
+	if len(a) == 0 {
 		return 0
 	}
-	for i := 0; i < len(a)-1; i++ {
-		for j := 0; j < len(a)-i-1; j++ {
-			if a[j] < a[j+1] {
-				a[j], a[j+1] = a[j+1], a[j]
-			}
+	max := 0
+	// Compare each integer to the var max
+	for _, value := range a {
+		if value > max {
+			max = value
 		}
 	}
-	return a[0]
+	return max
 }
