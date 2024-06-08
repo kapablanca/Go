@@ -50,7 +50,7 @@ func LoafOfBread(str string) string {
 		result = append(result, word...)
 	}
 	// Remove trailing space if there is one
-	if result[len(result)-1] == ' ' {
+	if len(result) > 0 && result[len(result)-1] == ' ' {
 		result = result[:len(result)-1]
 	}
 	return string(result) + "\n"
