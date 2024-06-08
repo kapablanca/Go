@@ -2,6 +2,9 @@ package piscine
 
 // Return the first char of a string
 func firstChar(s string) byte {
+	if len(s) == 0 {
+		return 0
+	}
 	return s[0]
 }
 
