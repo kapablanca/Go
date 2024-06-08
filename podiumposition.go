@@ -1,28 +1,18 @@
 package piscine
 
-// Function that outputs if a string has a specific rune
-func hasChar(s string, r rune) bool {
-	for _, char := range s {
-		if char == r {
-			return true
-		}
-	}
-	return false
+// Return the first char of a string
+func firstChar(s string) byte {
+	return s[0]
 }
 
 // Function that takes an unorderd slice of slices  of string and returns
 // the competitor's positions correctly.
 func PodiumPosition(podium [][]string) [][]string {
-	var position rune
-	// Search the position on each string and put it in the correct order
-	for index := range podium {
-		// Make the index a podium position
-		position = rune(index+1) + '0'
-		for rowIndex, slice := range podium {
-			for _, str := range slice {
-				if hasChar(str, position) {
-					podium[index][0], podium[rowIndex][0] = podium[rowIndex][0], podium[index][0]
-				}
+	// Sort the 2d array based on first value of string that shows podium position
+	for range podium {
+		for i := 0; i < len(podium)-1; i++ {
+			if firstChar(podium[i][0]) > firstChar(podium[i+1][0]) {
+				podium[i][0], podium[i+1][0] = podium[i+1][0], podium[i][0]
 			}
 		}
 	}
