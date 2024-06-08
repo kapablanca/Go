@@ -1,7 +1,6 @@
 package piscine
 
-// Function that takes an unorderd slice of slices  of string and returns
-// the competitor's positions correctly.
+// Function that outputs if a string has a specific rune
 func hasChar(s string, r rune) bool {
 	for _, char := range s {
 		if char == r {
@@ -10,6 +9,9 @@ func hasChar(s string, r rune) bool {
 	}
 	return false
 }
+
+// Function that takes an unorderd slice of slices  of string and returns
+// the competitor's positions correctly.
 func PodiumPosition(podium [][]string) [][]string {
 	rows := len(podium)
 	cols := len(podium[0])
