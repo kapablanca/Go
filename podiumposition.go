@@ -13,24 +13,25 @@ func hasChar(s string, r rune) bool {
 // Function that takes an unorderd slice of slices  of string and returns
 // the competitor's positions correctly.
 func PodiumPosition(podium [][]string) [][]string {
-	rows := len(podium)
-	cols := len(podium[0])
+	// rows := len(podium)
+	// cols := len(podium[0])
 	// Slice that holds the podium positions
 	positions := []rune{'1', '2', '3', '4'}
 	// Make an emptry 2d array with same dimensions as podium
-	newPodium := make([][]string, rows)
-	for i := range podium {
-		newPodium[i] = make([]string, cols)
-	}
+	// var newPodium [][]string
+	// for i := range podium {
+	// 	newPodium[i] = []string{""}
+	// }
 	// Search the position on each string and put it in the correct order
 	for index, char := range positions {
-		for _, slice := range podium {
+		for rowIndex, slice := range podium {
 			for _, str := range slice {
 				if hasChar(str, char) {
-					newPodium[index][0] = str
+					// newPodium[index][0] = str
+					podium[index][0], podium[rowIndex][0] = podium[rowIndex][0], podium[index][0]
 				}
 			}
 		}
 	}
-	return newPodium
+	return podium
 }
