@@ -1,46 +1,25 @@
 package piscine
 
-import "github.com/01-edu/z01"
-
 // Function that prints a slice of int
-func printSliceInt(slice []int) {
-	for index, digit := range slice {
-		if index != 0 {
-			z01.PrintRune(',')
-		}
-		z01.PrintRune(rune(digit) + '0')
-	}
-}
+func generateComb(n int, digit rune, comb []rune) {
+	if n == 0 {
 
-func isDescending(slice []int) bool {
-	for i := 0; i < len(slice)-1; i++ {
-		if slice[i] <= slice[i+1] {
-			return false
-		}
 	}
-	return true
+	for n > 0 {
+		comb = append(comb, digit)
+		generateComb(n-1, digit+1, comb)
+	}
 }
 
 // Function that prints all possible combinations
-//  of n different digits in ascending order.
+//
+//	of n different digits in ascending order.
+//
 // n will be defined as : 0 < n < 10
 func PrintCombN(n int) {
-	combinations := make([]int, 0, n)
-	digit := 0
-	// Check if 0 < n < 10
-	if n <= 0 || n > 9 {
-		return
-	}
+	var combination = []rune{}
 
-	for i := IterativePower(10, n); i <= 0; i-- {
-		for n != 0 {
-			digit = n % 10
-			combinations = append(combinations, digit)
-			n /= 10
-		}
-		// Print if valid combination
-		if isDescending(combinations) {
-			printSliceInt(combinations)
-		}
-	}
+	digit := '0'
+	generateComb(n, digit, combination)
+
 }
